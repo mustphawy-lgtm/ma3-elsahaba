@@ -398,6 +398,9 @@ footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-sta
 .band-rose{opacity:.09}
 .hero{align-items:center}
 .ten-grid .q{font-size:13.5px;line-height:1.65;margin-top:6px}
+.more-wrap{display:flex;justify-content:center;margin-top:22px}.more-wrap:empty{display:none}
+.more-btn{font-family:var(--f-ui);font-size:14px;font-weight:600;color:var(--ink);background:var(--sheet);border:1px solid var(--gold-l);border-radius:999px;padding:11px 26px;cursor:pointer;transition:background .2s}
+.more-btn:hover{background:color-mix(in srgb,var(--gold-l) 18%,var(--sheet))}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -806,8 +809,11 @@ let filter = "all", sim = null;
 function setNav(v){ document.querySelectorAll(".nav a").forEach(a => a.dataset.v === v ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current")); }
 
 /* ---------- الرئيسية ---------- */
+const SHOW = 6; let showAll = false, moreCount = 0;
+const moreHTML = () => moreCount > SHOW ? `<button class="more-btn" id="moreBtn" type="button" aria-expanded="${showAll}">${showAll ? "عرض أقل" : "شاهد كل الحلقات (" + ar(moreCount) + ")"}</button>` : "";
 function rowsHTML(){
-  return list.filter(l => filter === "all" || (filter === "ten" ? l.ten : group(l) === filter)).map((l) => {
+  const rows = list.filter(l => filter === "all" || (filter === "ten" ? l.ten : group(l) === filter)); moreCount = rows.length;
+  return rows.slice(0, showAll ? rows.length : SHOW).map((l) => {
     const n = list.indexOf(l) + 1;
     const v0 = (partsOf(l)[0]||{}).video; return `<li><a class="row" href="#${l.id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(String(n).padStart(2,"0"))}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span>${l.video ? `<span class="dur">${durOf(l)}</span>` : `<span class="soon">من التحضير</span>`}</a></li>`;
   }).join("");
@@ -842,12 +848,13 @@ function home(){
       <div class="filters" role="group" aria-label="تصفية">
         ${[["all","الكل"],["ten","العشرة"],["ansar","الأنصار"],["muhajir","المهاجرون"]].map(([k,t]) => `<button class="pill" data-f="${k}" aria-pressed="${filter===k}">${t}</button>`).join("")}
       </div></div>
-    <ol class="index" id="idx">${rowsHTML()}</ol>
+    <ol class="index" id="idx">${rowsHTML()}</ol><div class="more-wrap" id="moreWrap">${moreHTML()}</div>
   </section>
   ${aboutHTML()}
   </div>`;
   hoverThumbs();
-  view.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; view.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); document.getElementById("idx").innerHTML = rowsHTML(); });
+  view.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; view.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); document.getElementById("idx").innerHTML = rowsHTML(); document.getElementById("moreWrap").innerHTML = moreHTML(); });
+  document.getElementById("moreWrap").addEventListener("click", e => { if (!e.target.closest("#moreBtn")) return; const was = showAll; showAll = !showAll; document.getElementById("idx").innerHTML = rowsHTML(); document.getElementById("moreWrap").innerHTML = moreHTML(); if (was) document.getElementById("idx").scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"}); });
 }
 const ICON = {
   youtube:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15.1V8.9l5.4 3.1-5.4 3.1Z"/></svg>',
