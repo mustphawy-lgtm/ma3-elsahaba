@@ -401,6 +401,18 @@ footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-sta
 .more-wrap{display:flex;justify-content:center;margin-top:22px}.more-wrap:empty{display:none}
 .more-btn{font-family:var(--f-ui);font-size:14px;font-weight:600;color:var(--ink);background:var(--sheet);border:1px solid var(--gold-l);border-radius:999px;padding:11px 26px;cursor:pointer;transition:background .2s}
 .more-btn:hover{background:color-mix(in srgb,var(--gold-l) 18%,var(--sheet))}
+.series{padding-block:8px 20px;border-top:1px solid var(--rule)}.series .sec-h{margin:32px 0 16px;align-items:center}
+.ser-all{color:var(--muted);text-decoration:none}.ser-all:hover{color:var(--ink)}
+.ser{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.ser a{display:grid;gap:2px;text-decoration:none;color:var(--ink)}
+.ser .sc{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0D1020;margin-bottom:10px;box-shadow:6px -6px 0 -2px var(--paper),6px -6px 0 -1px var(--rule)}
+.ser .sc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.ser a:hover .sc img{transform:scale(1.04)}
+.ser .sn{position:absolute;inset-block-end:0;inset-inline-start:0;font-family:var(--f-ui);font-size:12px;font-weight:600;color:#fff;background:rgba(10,12,24,.78);padding:4px 10px;border-start-end-radius:10px}
+.ser b{font-family:var(--f-name);font-weight:400;font-size:22px;line-height:1.3}.ser a:hover b{color:var(--gold-d)}
+.ser em{font-style:normal;font-family:var(--f-text);font-size:14.5px;color:var(--muted)}
+@media (max-width:560px){.ser{grid-template-columns:1fr 1fr;gap:12px}.ser b{font-size:18px}.ser em{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.ser a:hover .sc img{transform:none}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -810,7 +822,7 @@ function setNav(v){ document.querySelectorAll(".nav a").forEach(a => a.dataset.v
 
 /* ---------- الرئيسية ---------- */
 const SHOW = 6; let showAll = false, moreCount = 0;
-const moreHTML = () => moreCount > SHOW ? `<button class="more-btn" id="moreBtn" type="button" aria-expanded="${showAll}">${showAll ? "عرض أقل" : "شاهد كل الحلقات (" + ar(moreCount) + ")"}</button>` : "";
+const moreHTML = () => moreCount > SHOW ? `<button class="more-btn" id="moreBtn" type="button" aria-expanded="${showAll}">${showAll ? "عرض أقل" : "شاهد كل الدروس (" + ar(moreCount) + ")"}</button>` : "";
 function rowsHTML(){
   const rows = list.filter(l => filter === "all" || (filter === "ten" ? l.ten : group(l) === filter)); moreCount = rows.length;
   return rows.slice(0, showAll ? rows.length : SHOW).map((l) => {
@@ -844,13 +856,14 @@ function home(){
     </div>
   </section>
   <section class="sec">
-    <div class="sec-h"><h2>كل الحلقات</h2>
+    <div class="sec-h"><h2>الدروس</h2>
       <div class="filters" role="group" aria-label="تصفية">
         ${[["all","الكل"],["ten","العشرة"],["ansar","الأنصار"],["muhajir","المهاجرون"]].map(([k,t]) => `<button class="pill" data-f="${k}" aria-pressed="${filter===k}">${t}</button>`).join("")}
       </div></div>
     <ol class="index" id="idx">${rowsHTML()}</ol><div class="more-wrap" id="moreWrap">${moreHTML()}</div>
   </section>
   ${aboutHTML()}
+  ${seriesHTML()}
   </div>`;
   hoverThumbs();
   view.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; view.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); document.getElementById("idx").innerHTML = rowsHTML(); document.getElementById("moreWrap").innerHTML = moreHTML(); });
@@ -878,6 +891,17 @@ function hoverThumbs(){
   view.addEventListener("mousemove", e => { if (cur) move(e); });
   view.addEventListener("mouseout", e => { const a = e.target.closest("[data-thumb]"); if (a && !a.contains(e.relatedTarget)) { cur = null; thumbEl.classList.remove("on"); } });
   addEventListener("hashchange", () => { cur = null; thumbEl.classList.remove("on"); });
+}
+const SERIES = [
+  {t:"رسائل قرآنية", d:"وقفات مع آيات من القرآن", id:"PLPpTjhQlbIsyBMxlFhQqwPYOcMOd5pGDi", v:"2NUl4FxXSRs", n:12},
+  {t:"دروس عامة", d:"دروس متفرقة في الإيمان والسلوك", id:"PLPpTjhQlbIsyhk74gtd9hTu3LQ-zCklKA", v:"0WQ2BQKDv4M", n:14},
+  {t:"السيرة النبوية", d:"مع النبي ﷺ من المولد للبعثة", id:"PLPpTjhQlbIsx-Fc8S4RbP-m4Pn9GLqWom", v:"NmdJkq3SISQ", n:6},
+  {t:"مشاعر الإيمان", d:"أعمال القلوب وأحوالها", id:"PLPpTjhQlbIszodTxzro8tV5b7Mvyi6wxL", v:"IDV10fI6aQA"},
+  {t:"مُفسِدات القلوب", d:"اللي بيفسد القلب وإزاي تعالجه", id:"PLPpTjhQlbIsxyWqmqsGSB-uhmYFHBiB8g", v:"v2m4UJJ4Jm0"}
+];
+function seriesHTML(){
+  return `<section class="series"><div class="sec-h"><h2>سلاسل أخرى</h2><a class="ui ser-all" href="https://www.youtube.com/channel/UCqHueXazVReJWcYdcL5TI8A/playlists" target="_blank" rel="noopener">كل السلاسل على يوتيوب ←</a></div>
+    <ul class="ser">${SERIES.map(x => `<li><a href="https://www.youtube.com/playlist?list=${x.id}" target="_blank" rel="noopener"><span class="sc"><img src="https://i.ytimg.com/vi/${x.v}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="stk" aria-hidden="true"></span>${x.n ? `<span class="sn">${ar(x.n)} حلقة</span>` : `<span class="sn">سلسلة</span>`}</span><b>${esc(x.t)}</b><em>${esc(x.d)}</em></a></li>`).join("")}</ul></section>`;
 }
 function aboutHTML(){
   return `<section class="about" id="about-sec">
