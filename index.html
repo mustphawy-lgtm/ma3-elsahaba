@@ -333,6 +333,15 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .bar.scrolled .nav a[aria-current="page"]{color:var(--bar-ink);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
 @media (prefers-reduced-motion:reduce){.bar,.bar .mark,.bar .nav a{transition:none}}
 @media (max-width:560px){.bar.scrolled{flex-wrap:nowrap;gap:8px}.bar.scrolled .mark{font-size:22px;white-space:nowrap}.bar.scrolled .nav{flex-wrap:nowrap;gap:0}.bar.scrolled .nav a{font-size:12.5px;padding:6px 8px;white-space:nowrap}}
+.nav{align-items:center}
+.theme-t{width:34px;height:34px;margin-inline-start:6px;display:inline-grid;place-items:center;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.theme-t:hover{background:var(--sheet)}
+.theme-t svg{width:17px;height:17px;grid-area:1/1;transition:opacity .25s,transform .35s}
+.theme-t .i-sun{opacity:0;transform:rotate(-60deg) scale(.6)}
+.theme-t.dark .i-sun{opacity:1;transform:none}.theme-t.dark .i-moon{opacity:0;transform:rotate(60deg) scale(.6)}
+.bar.scrolled .theme-t{color:var(--bar-ink);border-color:rgba(255,255,255,.22)}
+.bar.scrolled .theme-t:hover{background:rgba(255,255,255,.1)}
+@media (max-width:560px){.bar.scrolled .theme-t{width:30px;height:30px;margin-inline-start:2px}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -342,6 +351,7 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
       <a href="#home" data-v="home">الحلقات</a>
       <a href="#map" data-v="map">الخريطة</a>
       <a href="#about" data-v="about">عن السلسلة</a>
+      <button class="theme-t" id="themeT" type="button" aria-label="الوضع الليلي"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button>
     </nav>
   </header>
   <main id="view"></main>
@@ -1022,6 +1032,12 @@ function route(){
   window.scrollTo({ top: 0, behavior: "auto" });
 }
 window.addEventListener("hashchange", route);
+const root = document.documentElement, tBtn = document.getElementById("themeT");
+const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+const syncT = () => { if (!tBtn) return; const d = isDark(); tBtn.setAttribute("aria-label", d ? "الوضع النهاري" : "الوضع الليلي"); tBtn.classList.toggle("dark", d); };
+try { const t = localStorage.getItem("ms-theme"); if (t) root.dataset.theme = t; } catch(e) {}
+syncT(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncT);
+if (tBtn) tBtn.onclick = () => { const t = isDark() ? "light" : "dark"; root.dataset.theme = t; try { localStorage.setItem("ms-theme", t); } catch(e) {} syncT(); };
 const barEl = document.querySelector(".bar"); const onScroll = () => barEl && barEl.classList.toggle("scrolled", scrollY > 24); addEventListener("scroll", onScroll, {passive:true}); onScroll();
 route();
 })();
