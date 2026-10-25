@@ -443,11 +443,24 @@ svg text{direction:rtl;word-spacing:normal!important;letter-spacing:normal!impor
 .sf p{font-family:var(--f-text);font-size:16.5px;line-height:1.95;margin:0;opacity:.86}
 .sf blockquote{margin:12px 0 0;padding:4px 14px 4px 0;border-right:2px solid var(--gold-l);font-family:var(--f-text);font-size:16px;line-height:1.95;color:var(--gold-d)}
 .sf-note{text-align:center;opacity:.6;font-size:13px;margin:30px 0 0}
-.sf-back{text-align:center;margin:22px 0 40px}
+.sf-back{text-align:center;margin:34px 0 40px}
 :root[data-theme="dark"] .sf-n,:root[data-theme="dark"] .sf blockquote{color:var(--gold-l)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sf-n,:root:not([data-theme="light"]) .sf blockquote{color:var(--gold-l)}}
 @media (max-width:760px){.sf-list{grid-template-columns:1fr}.sf{grid-template-columns:44px 1fr}.sf-n{font-size:28px}.sf h2{font-size:23px}}
 .sf blockquote cite{display:block;font-style:normal;font-family:var(--f-ui);font-size:12.5px;color:var(--muted);margin-top:2px}
+.sf-books{max-width:1040px;margin:44px auto 0;padding-top:30px;border-top:1px solid var(--rule)}
+.sf-books h2{font-family:var(--f-name);font-weight:400;font-size:28px;margin:0 0 18px;text-align:center}
+.sf-books ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sf-books li{background:var(--sheet);border:1px solid var(--rule);border-radius:16px;padding:20px 22px;border-top:3px solid var(--gold-l)}
+.sf-books b{font-family:var(--f-name);font-weight:400;font-size:23px;display:block;line-height:1.4}
+.sf-books span{font-family:var(--f-ui);font-size:13px;color:var(--muted)}
+.sf-books p{font-family:var(--f-text);font-size:16px;line-height:1.9;margin:10px 0 0;opacity:.86}
+@media (max-width:760px){.sf-books ul{grid-template-columns:1fr}}
+.sf-books li{display:flex;flex-direction:column}
+.bk-l{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:auto;padding-top:12px}
+.bk-l a{font-family:var(--f-ui);font-size:13.5px;font-weight:600;color:var(--gold-d);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+:root[data-theme="dark"] .bk-l a{color:var(--gold-l)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bk-l a{color:var(--gold-l)}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -1250,10 +1263,16 @@ const SIFAT = [
 ];
 function sifat(){
   view.innerHTML = `<div class="view sifat">
-  <section class="sf-hero"><span class="eyebrow">من كتاب «من فضائل الصحابة»</span><h1>صفات جيل الصحابة</h1>
+  <section class="sf-hero"><span class="eyebrow">السمات العامة لجيل الصحابة</span><h1>صفات جيل الصحابة</h1>
     <p class="lede">${ar(SIFAT.length)} سمة ميّزت الجيل اللي صحب النبي ﷺ، مع دليل كل سمة من القرآن والسنة وأقوال الصحابة أنفسهم.</p></section>
   <ol class="sf-list">${SIFAT.map((x,i) => `<li class="sf"><span class="sf-n">${ar(i+1)}</span><div><h2>${x.t}</h2><p>${x.d}</p>${x.v ? (m => `<blockquote>${m ? m[1] : x.v}${m && m[2] ? `<cite>${m[2]}</cite>` : ""}</blockquote>`)(x.v.match(/^(.*[﴾»])\s*(.*)$/)) : ""}</div></li>`).join("")}</ol>
-  <p class="sf-note ui">هذه أشهر سماتهم لا كلها، كما نبّه المؤلف.</p>
+  <section class="sf-books"><h2>مصادر وقراءات</h2>
+    <ul>
+      <li><b>صحابة عظماء لم تسلط عليهم الأضواء</b><span>حامد الزيني · تقريظ د. محمد يسري إبراهيم · دار اليسر</span><p>الصفات في الصفحة دي ملخصة من فصل «السمات العامة لجيل الصحابة» (ص ٢٦)، وفيه الأدلة بتفصيل أكتر. وهي أشهر سماتهم لا كلها، كما نبّه المؤلف.</p><div class="bk-l"><a href="https://hamedalzainy.com/2024/03/22/%D8%B5%D8%AD%D8%A7%D8%A8%D8%A9-%D8%B9%D8%B8%D9%85%D8%A7%D8%A1-%D9%84%D9%85-%D8%AA%D8%B3%D9%84%D8%B7-%D8%B9%D9%84%D9%8A%D9%87%D9%85-%D8%A7%D9%84%D8%A7%D8%B6%D9%88%D8%A7%D8%A1/" target="_blank" rel="noopener">الكتاب على موقع المؤلف ←</a></div></li>
+      <li><b>صور من حياة الصحابة</b><span>عبد الرحمن رأفت الباشا</span><p>بداية جميلة بأسلوب قصصي. فيه الثابت والضعيف، وده مقبول في السير والمغازي عند أهل العلم ما دام مش في العقائد والأحكام.</p><div class="bk-l"><a href="https://archive.org/details/1997-swr_hayat_alsahaba-albasha" target="_blank" rel="noopener">الكتاب PDF ←</a><a href="https://archive.org/details/hayat-alsahapah202119862" target="_blank" rel="noopener">البرنامج الإذاعي بصوت المؤلف ←</a></div></li>
+      <li><b>عصر الخلافة الراشدة</b><span>د. أكرم ضياء العمري</span><p>«محاولة لنقد الرواية التاريخية وفق منهج المحدثين»: بيفرز روايات عصر الخلفاء الأربعة بميزان الحديث، فتعرف الثابت من غيره.</p><div class="bk-l"><a href="https://shamela.ws/book/11439" target="_blank" rel="noopener">اقرأه على الشاملة ←</a></div></li>
+      <li><b>سير أعلام النبلاء</b><span>الإمام الذهبي</span><p>المرجع الأصيل في التراجم، وأجزاؤه الأولى في سير الصحابة. طويل، فالأفضل ترجع له في الصحابي اللي بتدرسه بدل ما تقراه من أوله.</p><div class="bk-l"><a href="https://shamela.ws/book/10906" target="_blank" rel="noopener">اقرأه على الشاملة ←</a></div></li>
+    </ul></section>
   <div class="sf-back"><a class="band-cta" href="#home">ابدأ مع الصحابة ←</a></div>
   </div>`;
 }
