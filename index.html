@@ -289,7 +289,7 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .intro-ep h1{font-family:var(--f-name);font-weight:400;font-size:clamp(44px,6.5vw,76px);line-height:1.5;margin:4px 0 14px}
 .intro-ep .lede{font-size:19px;line-height:1.75;color:var(--ink-2);margin:0}
 @media (max-width:820px){.intro-ep{grid-template-columns:1fr;gap:20px;padding-block:28px 0}}
-:root{--mb-ink:#5A3A17;--mb-land:rgba(150,100,45,.13);--mb-red:#8E2A1A;--mb-red2:#A65A2A;--mb-paper:#EFE1BE;--mb-node:#F6EBCF;--mb-node2:#E7D3A4;--mb-burn:#7A4A1E;--mb-name:#2A1C0B;--paper-img:url(/map/paper.jpg)}
+:root{--paper-img-d:url(/map/paper-dark.jpg);--mb-ink:#5A3A17;--mb-land:rgba(150,100,45,.13);--mb-red:#8E2A1A;--mb-red2:#A65A2A;--mb-paper:#EFE1BE;--mb-node:#F6EBCF;--mb-node2:#E7D3A4;--mb-burn:#7A4A1E;--mb-name:#2A1C0B;--paper-img:url(/map/paper.jpg)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mb-ink:#C9A46A;--mb-land:rgba(201,164,106,.08);--mb-red:#E07A5F;--mb-red2:#C98A55;--mb-paper:#2C2416;--mb-node:#EADBB6;--mb-node2:#CDB27C;--mb-burn:#3A2610;--mb-name:#21170A;--paper-img:url(/map/paper-dark.jpg)}}
 :root[data-theme="dark"]{--mb-ink:#C9A46A;--mb-land:rgba(201,164,106,.08);--mb-red:#E07A5F;--mb-red2:#C98A55;--mb-paper:#2C2416;--mb-node:#EADBB6;--mb-node2:#CDB27C;--mb-burn:#3A2610;--mb-name:#21170A;--paper-img:url(/map/paper-dark.jpg)}
 .stage.map-old{background:var(--mb-paper) var(--paper-img) center/cover;border:1px solid var(--mb-ink);border-radius:4px;
@@ -369,6 +369,22 @@ footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-sta
 .about p{font-size:17px;line-height:1.75}
 .about .feat{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:15.5px;line-height:1.65;color:var(--ink-2)}
 .about .feat b{font-family:var(--f-ui);font-weight:600;color:var(--ink);font-size:14px}
+.ten-grid .q,.row .q,.latest .q,.head .q{font-family:var(--f-text)}
+.ten-grid .q{font-size:15px;line-height:1.6}.row .q{font-size:18px}.latest .q{font-size:19px}
+.band{position:relative;overflow:hidden;margin:56px 0 8px;border-radius:22px;background:#161A2A var(--paper-img-d,none) center/cover;color:#F1EFE9;isolation:isolate}
+.band::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(22,26,42,.55),rgba(22,26,42,.92) 70%);z-index:-1}
+.band::after{content:"";position:absolute;inset:12px;border:1px solid rgba(216,180,106,.35);border-radius:14px;pointer-events:none}
+.band-rose{position:absolute;width:min(720px,140%);height:auto;inset-inline-start:50%;top:50%;transform:translate(50%,-50%);z-index:-1;opacity:.14}
+.band-rose line,.band-rose circle{stroke:#D8B46A;stroke-width:.8;fill:none}
+.band-in{max-width:760px;margin:0 auto;padding:64px 28px 58px;text-align:center;display:grid;justify-items:center;gap:10px}
+.band-k{font-family:var(--f-ui);font-size:13px;letter-spacing:.12em;color:#D8B46A}
+.band-q{font-family:var(--f-name);font-size:clamp(44px,7.4vw,84px);line-height:1.45;margin:0;color:#F6EBCF}
+.band-s{font-family:var(--f-text);font-size:17.5px;line-height:1.95;margin:6px 0 0;color:rgba(241,239,233,.82);max-width:62ch}
+.band-src{font-family:var(--f-ui);font-size:12.5px;color:rgba(241,239,233,.55)}
+.band-cta{margin-top:18px;font-family:var(--f-ui);font-size:14px;font-weight:600;color:#161A2A;background:#D8B46A;padding:11px 20px;border-radius:999px;text-decoration:none;transition:background .2s}
+.band-cta:hover{background:#E6C786}
+@media (max-width:560px){.band{border-radius:16px;margin-top:40px}.band-in{padding:44px 20px 40px}.band-s{font-size:16px}}
+.band-rose{width:min(900px,180%);opacity:.2;-webkit-mask-image:radial-gradient(circle,#000 18%,transparent 62%);mask-image:radial-gradient(circle,#000 18%,transparent 62%)}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -798,6 +814,16 @@ function home(){
   <section class="sec ten-sec">
     <div class="sec-h"><h2>العشرة المبشرون بالجنة</h2><p class="ui ten-note">«أبو بكر في الجنة، وعمر في الجنة...» رواه الترمذي عن عبد الرحمن بن عوف</p></div>
     <ol class="ten-grid">${TEN.filter(id => byId[id]).map((id,i) => { const l = byId[id]; const v0 = (partsOf(l)[0]||{}).video; return `<li><a href="#${id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(i+1)}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span><span class="dur">${durOf(l)}</span></a></li>`; }).join("")}</ol>
+  </section>
+  <section class="band" aria-label="رسالة">
+    <svg class="band-rose" viewBox="0 0 400 400" aria-hidden="true">${Array.from({length:32},(_,i)=>{const t=i*Math.PI/16;return `<line x1="200" y1="200" x2="${(200+Math.cos(t)*400).toFixed(0)}" y2="${(200+Math.sin(t)*400).toFixed(0)}"/>`}).join("")}<circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="112"/></svg>
+    <div class="band-in">
+      <span class="band-k">قال رسول الله ﷺ</span>
+      <p class="band-q">«أَنْتَ مَعَ مَنْ أَحْبَبْتَ»</p>
+      <p class="band-s">قَالَ أَنَسٌ: فَمَا فَرِحْنَا بِشَيْءٍ فَرَحَنَا بِقَوْلِ النَّبِيِّ ﷺ: «أَنْتَ مَعَ مَنْ أَحْبَبْتَ»، فَأَنَا أُحِبُّ النَّبِيَّ ﷺ وَأَبَا بَكْرٍ وَعُمَرَ، وَأَرْجُو أَنْ أَكُونَ مَعَهُمْ بِحُبِّي إِيَّاهُمْ، وَإِنْ لَمْ أَعْمَلْ بِمِثْلِ أَعْمَالِهِمْ.</p>
+      <span class="band-src">رواه البخاري (٣٦٨٨)</span>
+      <a class="band-cta" href="#about">ابدأ بالحلقة التمهيدية ←</a>
+    </div>
   </section>
   <section class="sec">
     <div class="sec-h"><h2>كل الحلقات</h2>
