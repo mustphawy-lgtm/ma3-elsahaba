@@ -321,6 +321,18 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .rthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .rthumb .play{position:absolute;inset:0;margin:auto;width:46px;height:46px;opacity:.95}
 @media (prefers-reduced-motion:reduce){.rthumb{transition:none}}
+:root{--bar-bg:#161A2A;--bar-ink:#F1EFE9}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bar-bg:#06080F;--bar-ink:#ECE9E1}}
+:root[data-theme="dark"]{--bar-bg:#06080F;--bar-ink:#ECE9E1}
+.bar{position:sticky;top:0;z-index:40;background:var(--paper);box-shadow:0 0 0 100vmax var(--paper);clip-path:inset(0 -100vmax);transition:background .3s ease,box-shadow .3s ease,padding .3s ease,border-color .3s ease}
+.bar .mark,.bar .nav a{transition:color .3s ease,background .3s ease,font-size .3s ease}
+.bar.scrolled{background:var(--bar-bg);box-shadow:0 0 0 100vmax var(--bar-bg);border-bottom-color:transparent;padding-block:10px 8px}
+.bar.scrolled .mark{color:var(--bar-ink);font-size:28px}
+.bar.scrolled .nav a{color:color-mix(in srgb,var(--bar-ink) 65%,transparent)}
+.bar.scrolled .nav a:hover{color:var(--bar-ink)}
+.bar.scrolled .nav a[aria-current="page"]{color:var(--bar-ink);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+@media (prefers-reduced-motion:reduce){.bar,.bar .mark,.bar .nav a{transition:none}}
+@media (max-width:560px){.bar.scrolled{flex-wrap:nowrap;gap:8px}.bar.scrolled .mark{font-size:22px;white-space:nowrap}.bar.scrolled .nav{flex-wrap:nowrap;gap:0}.bar.scrolled .nav a{font-size:12.5px;padding:6px 8px;white-space:nowrap}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -1010,6 +1022,7 @@ function route(){
   window.scrollTo({ top: 0, behavior: "auto" });
 }
 window.addEventListener("hashchange", route);
+const barEl = document.querySelector(".bar"); const onScroll = () => barEl && barEl.classList.toggle("scrolled", scrollY > 24); addEventListener("scroll", onScroll, {passive:true}); onScroll();
 route();
 })();
 
