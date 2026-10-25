@@ -394,6 +394,8 @@ footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-sta
 .main-axes>li,.main-axes>li.g-g,.main-axes>li.g-y,.main-axes>li.g-r,.main-axes>li.g-n{border-top-color:var(--gold-l)}
 .part[aria-selected="true"]{border-color:var(--gold-l);box-shadow:inset 0 0 0 1px var(--gold-l);background:color-mix(in srgb,var(--gold-l) 14%,var(--sheet))}
 .part[aria-selected="true"] b{color:var(--gold-d)}
+.band-q{margin-bottom:18px}
+.band-rose{opacity:.09}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -828,7 +830,7 @@ function home(){
     <svg class="band-rose" viewBox="0 0 400 400" aria-hidden="true">${Array.from({length:32},(_,i)=>{const t=i*Math.PI/16;return `<line x1="200" y1="200" x2="${(200+Math.cos(t)*400).toFixed(0)}" y2="${(200+Math.sin(t)*400).toFixed(0)}"/>`}).join("")}<circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="112"/></svg>
     <div class="band-in">
       <span class="band-k">قال رسول الله ﷺ</span>
-      <p class="band-q">«أَنْتَ مَعَ مَنْ أَحْبَبْتَ»</p>
+      <p class="band-q">أَنْتَ مَعَ مَنْ أَحْبَبْتَ</p>
       <p class="band-s">قَالَ أَنَسٌ: فَمَا فَرِحْنَا بِشَيْءٍ فَرَحَنَا بِقَوْلِ النَّبِيِّ ﷺ: «أَنْتَ مَعَ مَنْ أَحْبَبْتَ»، فَأَنَا أُحِبُّ النَّبِيَّ ﷺ وَأَبَا بَكْرٍ وَعُمَرَ، وَأَرْجُو أَنْ أَكُونَ مَعَهُمْ بِحُبِّي إِيَّاهُمْ، وَإِنْ لَمْ أَعْمَلْ بِمِثْلِ أَعْمَالِهِمْ.</p>
       <span class="band-src">رواه البخاري (٣٦٨٨)</span>
       <a class="band-cta" href="#about">ابدأ بالحلقة التمهيدية ←</a>
