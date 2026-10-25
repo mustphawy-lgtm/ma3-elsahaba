@@ -497,6 +497,16 @@ svg text{direction:rtl;word-spacing:normal!important;letter-spacing:normal!impor
 .band::before{background:radial-gradient(ellipse at 50% 30%,rgba(27,32,51,.0),rgba(27,32,51,.0))}
 .band-art{opacity:.9;-webkit-mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%);mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%)}
 @media (max-width:560px){.band-art{opacity:.9}}
+/* band full-bleed, centered */
+html{overflow-x:clip}
+.band{width:100vw;margin-inline:calc(50% - 50vw);border-radius:0}
+.band::after{display:none}
+.band .band-in{padding:64px 28px 64px;max-width:860px}
+.band-slide .band-q{margin-bottom:22px}
+.band-slide .band-s{margin-top:0}
+.band-slide .band-src{margin-top:6px}
+.band-art{background-size:cover;background-position:center 72%}
+@media (max-width:560px){.band .band-in{padding:48px 20px 48px}.band-art{background-size:auto 115%;background-position:48% bottom}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
