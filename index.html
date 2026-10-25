@@ -510,7 +510,7 @@ html{overflow-x:clip}
 /* light-mode band */
 @media (prefers-color-scheme:light){
 :root:not([data-theme="dark"]) .band{background:#EEE4D0;color:var(--ink)}
-:root:not([data-theme="dark"]) .band-art{background-image:url(/img/band-art-l.webp);opacity:.5;z-index:-2}
+:root:not([data-theme="dark"]) .band-art{background-image:url(/img/band-art-l.webp);opacity:.42}
 :root:not([data-theme="dark"]) .band-k{color:var(--gold-d)}
 :root:not([data-theme="dark"]) .band-q,:root:not([data-theme="dark"]) .band-slide .band-q{color:#1E1A14}
 :root:not([data-theme="dark"]) .band-s{color:#4A4236}
@@ -521,7 +521,7 @@ html{overflow-x:clip}
 :root:not([data-theme="dark"]) .band-cta2:hover{color:#6E5218;border-color:#6E5218}
 }
 :root[data-theme="light"] .band{background:#EEE4D0;color:var(--ink)}
-:root[data-theme="light"] .band-art{background-image:url(/img/band-art-l.webp);opacity:.5;z-index:-2}
+:root[data-theme="light"] .band-art{background-image:url(/img/band-art-l.webp);opacity:.42}
 :root[data-theme="light"] .band-k{color:var(--gold-d)}
 :root[data-theme="light"] .band-q,:root[data-theme="light"] .band-slide .band-q{color:#1E1A14}
 :root[data-theme="light"] .band-s{color:#4A4236}
@@ -530,8 +530,28 @@ html{overflow-x:clip}
 :root[data-theme="light"] .band-dot i::after{background:var(--gold-d)}
 :root[data-theme="light"] .band-cta2{color:var(--gold-d);border-color:rgba(140,106,34,.45)}
 :root[data-theme="light"] .band-cta2:hover{color:#6E5218;border-color:#6E5218}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .band::before{background:radial-gradient(ellipse 46% 52% at 50% 46%,rgba(238,228,208,.92),rgba(238,228,208,.55) 55%,rgba(238,228,208,0) 85%)}}
-:root[data-theme="light"] .band::before{background:radial-gradient(ellipse 46% 52% at 50% 46%,rgba(238,228,208,.92),rgba(238,228,208,.55) 55%,rgba(238,228,208,0) 85%)}
+/* art at native size, faded at the sides */
+.band-art{left:50%;right:auto;width:min(1671px,100%);transform:translateX(-50%);background-size:100% auto;background-position:center 72%;
+-webkit-mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%),linear-gradient(to right,transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;
+mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%),linear-gradient(to right,transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}
+@media (min-width:1280px){.band-art{width:1300px}}
+@media (max-width:560px){.band-art{left:0;width:100%;transform:none;background-size:auto 115%;background-position:48% bottom;-webkit-mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%);mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%)}}
+/* spacing v2 */
+.ten-sec{padding-top:88px}
+.band{margin-block:104px 0}
+.band + .sec{padding-top:104px}
+.series{margin-top:112px;padding-bottom:64px}
+.about{margin-top:72px;padding-block:64px}
+.qa{margin:96px 0 24px}
+.sf-books{margin-top:88px}
+@media (max-width:560px){.ten-sec{padding-top:56px}.band{margin-block:64px 0}.band + .sec{padding-top:64px}.series{margin-top:72px;padding-bottom:40px}.about{margin-top:48px;padding-block:44px}.qa{margin-top:64px}}
+/* expanded art: full width, figures fully visible (no faded faces) */
+.band-art{left:0;right:0;width:auto;transform:none;background-size:cover;background-position:center 85%;
+-webkit-mask-image:linear-gradient(to top,#000 55%,transparent 95%);mask-image:linear-gradient(to top,#000 55%,transparent 95%);-webkit-mask-composite:source-over;mask-composite:add}
+@media (min-width:1280px){.band-art{width:auto}}
+@media (max-width:560px){.band-art{background-size:auto 100%;background-position:50% bottom;-webkit-mask-image:linear-gradient(to top,#000 55%,transparent 95%);mask-image:linear-gradient(to top,#000 55%,transparent 95%)}}
+@media (max-width:560px){.band-art{background-size:260% auto;background-position:50% 100%}}
+@media (max-width:560px){.band .band-in{padding:48px 20px 150px}.band-art{-webkit-mask-image:linear-gradient(to top,#000 62%,transparent 100%);mask-image:linear-gradient(to top,#000 62%,transparent 100%)}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
