@@ -366,6 +366,9 @@ footer>span{display:inline-flex;align-items:center}
 footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-start:0}
 @media (max-width:560px){footer{flex-wrap:nowrap}footer .sig{height:26px}footer>span{font-size:11.5px}}
 .bar.scrolled .mark .logo{transform:translateY(3px)}
+.about p{font-size:17px;line-height:1.75}
+.about .feat{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:15.5px;line-height:1.65;color:var(--ink-2)}
+.about .feat b{font-family:var(--f-ui);font-weight:600;color:var(--ink);font-size:14px}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -833,8 +836,14 @@ function hoverThumbs(){
 }
 function aboutHTML(){
   return `<section class="about" id="about-sec">
-    <div><h3>ليه الصحابة؟</h3><p>لأنهم الجيل اللي استقبل الوحي أول مرة، و«المرء مع من أحب». الحلقات بتحكي قصصهم الثابتة، وبتنزّلها على حياة الشباب.</p></div>
-    <div><h3>عن المحاور</h3><p>كل حلقة معاها محاورها والفوائد اللي فيها، ومعاها حلقات لمشايخ تانيين عن نفس الصحابي.</p></div>
+    <div><h3>لماذا الصحابة؟</h3><p>لأنهم الجيل اللي استقبل الوحي أول مرة، و«المرء مع من أحب». الحلقات بتحكي قصصهم الثابتة، وبتنزّلها على حياة الشباب.</p></div>
+    <div><h3>عن الموقع</h3><ul class="feat">
+      <li><b>الخريطة:</b> كل صحابي متوصل بالغزوات والقبائل والمعاني، على خريطة لجزيرة العرب.</li>
+      <li><b>السلاسل:</b> العشرة المبشرون بالجنة بمجالسهم، وباقي الصحابة حلقة حلقة.</li>
+      <li><b>محاور كل حلقة:</b> أهم المواقف ومصادرها والفوائد اللي فيها.</li>
+      <li><b>شجرة العائلة:</b> نسب كل صحابي وأهله، والصلات بينه وبين غيره.</li>
+      <li><b>صوت وفيديو:</b> الحلقة على يوتيوب، وتسمعها على ساوندكلاود.</li>
+      <li><b>مشايخ تانيين:</b> حلقات عن نفس الصحابي للكملي وشومان وسمير مصطفى وغيرهم.</li></ul></div>
     <div><h3>تابع الدروس</h3><div class="chan">${C.filter(c => c.url).map(c => `<a href="${esc(c.url)}" target="_blank" rel="noopener" class="ch-${c.icon||""}">${ICON[c.icon]||""}<span>${esc(c.name)}</span></a>`).join("")}</div></div>
   </section>`;
 }
