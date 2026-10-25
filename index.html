@@ -348,6 +348,17 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .hero h1.hero-logo{line-height:1;margin:0 0 26px}
 .hero h1.hero-logo .logo{display:block;width:min(100%,460px);height:auto;color:var(--ink)}
 @media (max-width:820px){.hero h1.hero-logo .logo{width:min(80%,340px)}}
+.aud{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.aud-btn{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:10px 14px;flex:1 1 260px;transition:border-color .2s}
+.aud-btn:hover{border-color:#FF5500}
+.aud-btn svg{width:30px;height:30px;color:#FF5500;flex:0 0 30px}
+.aud-btn span{display:grid;gap:1px}.aud-btn b{font-family:var(--f-ui);font-size:15px;font-weight:600}.aud-btn small{font-family:var(--f-ui);font-size:12px;color:var(--muted)}
+.aud-play{font-family:var(--f-ui);font-size:14px;font-weight:600;color:#fff;background:#FF5500;border:0;border-radius:999px;padding:10px 18px;cursor:pointer}
+.aud-play:hover{background:#E64D00}
+.aud-embed{flex-basis:100%}.aud-embed:empty{display:none}
+.aud-embed iframe{width:100%;height:120px;border:0;border-radius:12px}
+.ch-soundcloud svg{color:#FF5500}
+@media (max-width:420px){.bar.scrolled .mark .logo{height:24px}.bar.scrolled .nav a{font-size:12px;padding:6px 6px}.bar.scrolled .theme-t{width:28px;height:28px}.bar.scrolled{gap:6px}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -518,6 +529,7 @@ window.CHANNELS = [
   { name: "فيسبوك", url: "https://www.facebook.com/mustafakhaled1992/", icon: "facebook" },
   { name: "إنستجرام", url: "https://www.instagram.com/mustafakhaled92/", icon: "instagram" },
   { name: "تيك توك", url: "https://www.tiktok.com/@mustafakhaledofficial", icon: "tiktok" },
+  { name: "ساوندكلاود", url: "https://soundcloud.com/mustafakhaledofficial92", icon: "soundcloud" },
   { name: "رسائل قرآنية على تليجرام", url: "https://t.me/rasaaelrabanya", icon: "telegram" },
   { name: "أكاديمية مجالس القرآن على تليجرام", url: "https://t.me/academyatmajaleselquran", icon: "telegram" }
 ];
@@ -548,6 +560,29 @@ window.OTHERS = {
  "musab":[{k:"kamali",v:"qJQdKflNF5I",d:"٩ د"},{k:"shoman",v:"bPNK3Somaps",d:"٣٩ د"},{k:"awadi",v:"_j_jWemKe78",d:"١٢ د"},{k:"masri",v:"lnsQtneHhiY",d:"١:٤٥ س"},{k:"rashid",v:"gk9PqZPawY4",d:"٢٤ د"}],
  "kaab":[{k:"kamali",v:"trQOIabAkuQ",d:"١٧ د"},{k:"shoman",v:"lnO-plE2hXE",d:"١:١١ س"},{k:"samir",v:"tP86rHJ5r6E",d:"١٥ د"},{k:"awadi",v:"EOQwhVOVTTc",d:"٢٤ د"},{k:"khamis",v:"0FWa-PbqU5U",d:"٢١ د"},{k:"sirgani",v:"LRlt4XMH_RI",d:"٥ د"}],
  "ibn-umar":[{k:"kamali",v:"J_uIWm15F8E",d:"١٦ د"}]
+};
+</script><script>/* الحلقات الصوتية على ساوندكلاود: لكل درس مصفوفة بنفس ترتيب المجالس */
+window.SC_BASE = "https://soundcloud.com/mustafakhaledofficial92/";
+window.AUDIO = {
+  "intro": ["hry8w9axxqsx"],
+  "abu-bakr": ["vrtdlgkfwzyz","k1guksu3sxwz","wbze19bumjvy","r1dhlfgfhnxh"],
+  "umar": ["puwfemhrbtky","b98b1fbb-ee45-4066-8fec-e1cdcc27bf2f","ywnksimospf0","ypff5e29bbrw"],
+  "uthman": ["tdpl2avq9myf","eutlt7najydy"],
+  "ali": ["57867096-942e-4875-9c29-7924c6bfaf58","6ad77fd3-a43c-4310-9020-b0faea657194"],
+  "talha": ["c0cb1b69-d08b-47ca-b318-875a60efc6a6"],
+  "zubayr": ["s5rjreyk7f81"],
+  "saad": ["830a1eec-9b9a-4bd6-8a4a-080b2b0f351f"],
+  "abd-rahman": ["0109af74-02dc-4c76-a76c-7c99fb27af81"],
+  "abu-ubayda": ["1cf5e6a5-c933-4fed-ac54-95535751fe84"],
+  "said": ["feeebe65-f8d4-44fe-829a-eb7e456202f8"],
+  "musab": ["qbpb8d3bc2yo"],
+  "marthad": ["zkcbpfyw9aaw"],
+  "hudhayfa": ["p2hnmtlc445f"],
+  "ibn-masud": ["ngfojcxldaos"],
+  "abu-dujana": ["naxriij43afj"],
+  "amr-jamuh": ["jolh89iuer9g"],
+  "kaab": ["ia9391hmuhbq"],
+  "anas-nadr": ["ehi1nyhrxl2j"]
 };
 </script><script>/* المعاني: تعريفها ومرادفاتها للبحث، وتوزيعها على الصحابة حسب قصصهم في الحلقات */
 (function(){
@@ -809,6 +844,16 @@ function playerHTML(l, t, vid){
   if (!t) return `<button class="yt has-cover" data-embed="${esc(vid)}" aria-label="شغّل الحلقة">${cover}<span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button>`;
   return `<iframe src="https://www.youtube-nocookie.com/embed/${esc(vid)}?rel=0&autoplay=1${t > 1 ? "&start=" + t : ""}" title="${esc(l.name)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
 }
+const scURL = (id, pi) => { const a = (window.AUDIO||{})[id]; return a && a[pi||0] ? window.SC_BASE + a[pi||0] : null; };
+const SC_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1.2 14.4c.1 0 .2.1.2.2l.3 1.8-.3 1.8c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-1.8.3-1.8c0-.1.1-.2.2-.2Zm1.7-1c.1 0 .2.1.2.2l.4 2.8-.4 2.7c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-2.7.3-2.8c0-.1.1-.2.2-.2Zm1.8-.6c.1 0 .2.1.2.3l.3 3.3-.3 3.2c0 .1-.1.2-.2.2s-.3-.1-.3-.2l-.3-3.2.3-3.3c0-.2.1-.3.3-.3Zm1.8-.1c.2 0 .3.1.3.3l.3 3.4-.3 3.3c0 .2-.1.3-.3.3s-.3-.1-.3-.3l-.3-3.3.3-3.4c0-.2.1-.3.3-.3Zm1.9-.6c.2 0 .3.1.3.3l.3 4-.3 3.3c0 .2-.2.3-.3.3-.2 0-.3-.1-.3-.3l-.3-3.3.3-4c0-.2.1-.3.3-.3Zm1.9-1.4c.2 0 .4.2.4.4l.3 5.4-.3 3.3c0 .2-.2.4-.4.4s-.4-.2-.4-.4l-.2-3.3.2-5.4c0-.2.2-.4.4-.4Zm2-.9c.2 0 .4.2.4.4l.2 6.3-.2 3.3c0 .3-.2.4-.4.4-.3 0-.4-.2-.4-.4l-.2-3.3.2-6.3c0-.2.2-.4.4-.4Zm1.6-.5c.4-.2.9-.2 1.4-.2 2.9 0 5.3 2.2 5.6 5.1.4-.2.8-.3 1.3-.3 1.8 0 3.2 1.5 3.2 3.3s-1.4 3.3-3.2 3.3h-8c-.3 0-.5-.2-.5-.5V9.2c0-.3.1-.4.2-.4Z"/></svg>';
+ICON.soundcloud = SC_ICON;
+function audioHTML(url, label){
+  if (!url) return "";
+  return `<div class="aud"><a class="aud-btn" href="${esc(url)}" target="_blank" rel="noopener">${SC_ICON}<span><b>${label || "استمع للحلقة صوت"}</b><small>على ساوندكلاود · تقدر تسمعها وانت بره الموقع</small></span></a>${window.NO_EMBED ? "" : `<button class="aud-play" type="button" data-sc="${esc(url)}">شغّل هنا</button>`}<div class="aud-embed"></div></div>`;
+}
+function wireAudio(root){
+  root.querySelectorAll("[data-sc]").forEach(b => b.onclick = () => { const box = b.parentNode.querySelector(".aud-embed"); box.innerHTML = `<iframe title="مشغّل الصوت" allow="autoplay" src="https://w.soundcloud.com/player/?url=${encodeURIComponent(b.dataset.sc)}&color=%23161a2a&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>`; b.remove(); });
+}
 function companion(l, pi){
   const i = list.indexOf(l), prev = list[i-1], next = list[i+1], P = partsOf(l);
   pi = Math.min(pi || 0, Math.max(P.length - 1, 0));
@@ -822,6 +867,7 @@ function companion(l, pi){
       ${P.length > 1 ? `<div class="parts" role="tablist" aria-label="مجالس الحلقة">${P.map((p,j) => `<button role="tab" class="part" data-p="${j}" aria-selected="${j===pi}"><b>المجلس ${ar(j+1)}</b><span>${esc(p.label||"")}</span><em>${esc(p.dur||"")}</em></button>`).join("")}</div>` : ""}
       <div class="player" id="player">${playerHTML(l, 0, vid)}</div>
       ${cp && cp.extra ? `<a class="extra ui" href="${yt(cp.extra.video)}" target="_blank" rel="noopener">＋ ${esc(cp.extra.label)} (مقطع منفصل على يوتيوب)</a>` : ""}
+      ${audioHTML(scURL(l.id, pi), P.length > 1 ? "استمع للمجلس " + ar(pi+1) + " صوت" : null)}
       <p class="intro">${esc(l.oneLine)}</p>
     </div>
     <aside class="side">
@@ -844,6 +890,7 @@ function companion(l, pi){
     else document.getElementById("player").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
   });
   const pl = document.getElementById("player"); pl.addEventListener("click", e => { const b = e.target.closest("[data-embed]"); if (b) pl.innerHTML = playerHTML(l, 1, b.dataset.embed); });
+  wireAudio(view);
   view.querySelectorAll(".part").forEach(b => b.onclick = () => { const y = scrollY; companion(l, +b.dataset.p); scrollTo({top:y}); const t = view.querySelector('.part[aria-selected="true"]'); t && t.focus(); });
   view.querySelectorAll("[data-tag]").forEach(a => a.onclick = () => { pendingTag = "t:" + a.dataset.tag; });
   const tw_ = view.querySelector(".tree-wrap"); if (tw_) tw_.scrollLeft = -(tw_.scrollWidth - tw_.clientWidth)/2;
@@ -1023,9 +1070,10 @@ function about(){
   view.innerHTML = `<div class="view">
   <section class="intro-ep"><div class="ie-h"><span class="eyebrow">الحلقة التمهيدية · ${INTRO.dur}</span><h1>لماذا الصحابة؟</h1>
     <p class="lede">قبل ما نبدأ مع كل صحابي: ليه نتعلم سيرهم، وإزاي نصحبهم.</p></div>
-    <div class="player" id="player">${playerHTML(INTRO, 0, INTRO.video)}</div></section>
+    <div><div class="player" id="player">${playerHTML(INTRO, 0, INTRO.video)}</div>${audioHTML(scURL("intro"))}</div></section>
   ${aboutHTML()}</div>`;
   const pl = document.getElementById("player"); pl.addEventListener("click", e => { const b = e.target.closest("[data-embed]"); if (b) pl.innerHTML = playerHTML(INTRO, 1, b.dataset.embed); });
+  wireAudio(view);
 }
 
 /* ---------- التوجيه ---------- */
