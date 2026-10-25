@@ -492,6 +492,11 @@ svg text{direction:rtl;word-spacing:normal!important;letter-spacing:normal!impor
 .band .band-in{padding-bottom:clamp(120px,14vw,190px)}
 @media (max-width:560px){.band-art{background-size:auto 330px;background-position:48% bottom;opacity:.26}.band .band-in{padding-bottom:200px}}
 .hero h1{margin:0 0 44px}@media (max-width:560px){.hero h1{margin-bottom:30px}}
+/* woodcut tone-on-tone */
+.band{background:#1B2033}
+.band::before{background:radial-gradient(ellipse at 50% 30%,rgba(27,32,51,.0),rgba(27,32,51,.0))}
+.band-art{opacity:.9;-webkit-mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%);mask-image:linear-gradient(to top,#000 40%,rgba(0,0,0,.6) 65%,transparent 92%)}
+@media (max-width:560px){.band-art{opacity:.9}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
