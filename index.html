@@ -316,6 +316,11 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .chan{display:grid;grid-template-rows:repeat(4,auto);grid-auto-flow:column;grid-auto-columns:max-content;column-gap:32px;row-gap:10px;justify-content:start}
 @media (max-width:420px){.chan{column-gap:18px}.chan a{font-size:13px}}
 .hero .by{margin-top:16px}
+.rthumb{position:fixed;left:0;top:0;width:260px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0D1020;box-shadow:0 18px 40px -12px rgba(20,15,5,.45),0 0 0 1px rgba(0,0,0,.06);pointer-events:none;z-index:50;opacity:0;scale:.92;transition:opacity .18s ease,scale .18s ease}
+.rthumb.on{opacity:1;scale:1}
+.rthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.rthumb .play{position:absolute;inset:0;margin:auto;width:46px;height:46px;opacity:.95}
+@media (prefers-reduced-motion:reduce){.rthumb{transition:none}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -703,7 +708,7 @@ function setNav(v){ document.querySelectorAll(".nav a").forEach(a => a.dataset.v
 function rowsHTML(){
   return list.filter(l => filter === "all" || (filter === "ten" ? l.ten : group(l) === filter)).map((l) => {
     const n = list.indexOf(l) + 1;
-    return `<li><a class="row" href="#${l.id}"><span class="no">${ar(String(n).padStart(2,"0"))}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span>${l.video ? `<span class="dur">${durOf(l)}</span>` : `<span class="soon">من التحضير</span>`}</a></li>`;
+    const v0 = (partsOf(l)[0]||{}).video; return `<li><a class="row" href="#${l.id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(String(n).padStart(2,"0"))}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span>${l.video ? `<span class="dur">${durOf(l)}</span>` : `<span class="soon">من التحضير</span>`}</a></li>`;
   }).join("");
 }
 function home(){
@@ -719,7 +724,7 @@ function home(){
   </section>
   <section class="sec ten-sec">
     <div class="sec-h"><h2>العشرة المبشرون بالجنة</h2><p class="ui ten-note">«أبو بكر في الجنة، وعمر في الجنة...» رواه الترمذي عن عبد الرحمن بن عوف</p></div>
-    <ol class="ten-grid">${TEN.filter(id => byId[id]).map((id,i) => { const l = byId[id]; return `<li><a href="#${id}"><span class="no">${ar(i+1)}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span><span class="dur">${durOf(l)}</span></a></li>`; }).join("")}</ol>
+    <ol class="ten-grid">${TEN.filter(id => byId[id]).map((id,i) => { const l = byId[id]; const v0 = (partsOf(l)[0]||{}).video; return `<li><a href="#${id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(i+1)}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span><span class="dur">${durOf(l)}</span></a></li>`; }).join("")}</ol>
   </section>
   <section class="sec">
     <div class="sec-h"><h2>كل الحلقات</h2>
@@ -730,6 +735,7 @@ function home(){
   </section>
   ${aboutHTML()}
   </div>`;
+  hoverThumbs();
   view.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; view.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); document.getElementById("idx").innerHTML = rowsHTML(); });
 }
 const ICON = {
@@ -743,6 +749,17 @@ function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
   return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ تانيين</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
+}
+let thumbEl = null;
+function hoverThumbs(){
+  if (!matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  if (!thumbEl) { thumbEl = document.createElement("div"); thumbEl.className = "rthumb"; thumbEl.setAttribute("aria-hidden","true"); thumbEl.innerHTML = '<img alt="">'; document.body.appendChild(thumbEl); }
+  const img = thumbEl.querySelector("img"); let cur = null;
+  const move = e => { const w = 260, h = 146, x = Math.min(innerWidth - w - 16, Math.max(16, e.clientX - w/2)), y = e.clientY - h - 24 < 12 ? e.clientY + 24 : e.clientY - h - 24; thumbEl.style.transform = `translate(${x}px,${y}px)`; };
+  view.addEventListener("mouseover", e => { const a = e.target.closest("[data-thumb]"); if (!a || a === cur) return; cur = a; img.src = `https://i.ytimg.com/vi/${encodeURIComponent(a.dataset.thumb)}/mqdefault.jpg`; move(e); thumbEl.classList.add("on"); });
+  view.addEventListener("mousemove", e => { if (cur) move(e); });
+  view.addEventListener("mouseout", e => { const a = e.target.closest("[data-thumb]"); if (a && !a.contains(e.relatedTarget)) { cur = null; thumbEl.classList.remove("on"); } });
+  addEventListener("hashchange", () => { cur = null; thumbEl.classList.remove("on"); });
 }
 function aboutHTML(){
   return `<section class="about" id="about-sec">
