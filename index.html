@@ -475,6 +475,12 @@ svg text{direction:rtl;word-spacing:normal!important;letter-spacing:normal!impor
 .qa-n{font-family:var(--f-ui);font-size:13px;color:var(--muted);margin:0 0 16px}
 :root[data-theme="dark"] .qa summary{color:var(--gold-l)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .qa summary{color:var(--gold-l)}}
+/* مسافات بين السكاشن */
+.band{margin:80px 0 24px}
+.ten-sec{padding-top:56px}
+.series{margin-top:80px;padding-bottom:48px}
+.about{margin-top:56px;padding-block:52px}
+@media (max-width:560px){.band{margin:56px 0 16px}.series{margin-top:56px;padding-bottom:32px}.about{margin-top:40px;padding-block:40px}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -916,8 +922,8 @@ function home(){
       </div></div>
     <ol class="index" id="idx">${rowsHTML()}</ol><div class="more-wrap" id="moreWrap">${moreHTML()}</div>
   </section>
-  ${aboutHTML()}
   ${seriesHTML()}
+  ${aboutHTML()}
   </div>`;
   hoverThumbs(); wireBand();
   view.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter = b.dataset.f; view.querySelectorAll("[data-f]").forEach(x => x.setAttribute("aria-pressed", x === b)); document.getElementById("idx").innerHTML = rowsHTML(); document.getElementById("moreWrap").innerHTML = moreHTML(); });
@@ -1261,8 +1267,8 @@ function about(){
   <section class="intro-ep"><div class="ie-h"><span class="eyebrow">الحلقة التمهيدية · ${INTRO.dur}</span><h1>لماذا الصحابة؟</h1>
     <p class="lede">قبل ما نبدأ مع كل صحابي: ليه نتعلم سيرهم، وإزاي نصحبهم.</p></div>
     <div><div class="player" id="player">${playerHTML(INTRO, 0, INTRO.video)}</div>${audioHTML(scURL("intro"))}</div></section>
-  ${aboutHTML()}
-  ${qaHTML()}</div>`;
+  ${qaHTML()}
+  ${aboutHTML()}</div>`;
   const pl = document.getElementById("player"); pl.addEventListener("click", e => { const b = e.target.closest("[data-embed]"); if (b) pl.innerHTML = playerHTML(INTRO, 1, b.dataset.embed); });
   wireAudio(view);
 }
