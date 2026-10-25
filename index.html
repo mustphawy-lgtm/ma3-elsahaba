@@ -385,6 +385,15 @@ footer{justify-content:space-between;gap:12px}footer .sig-link{margin-inline-sta
 .band-cta:hover{background:#E6C786}
 @media (max-width:560px){.band{border-radius:16px;margin-top:40px}.band-in{padding:44px 20px 40px}.band-s{font-size:16px}}
 .band-rose{width:min(900px,180%);opacity:.2;-webkit-mask-image:radial-gradient(circle,#000 18%,transparent 62%);mask-image:radial-gradient(circle,#000 18%,transparent 62%)}
+:root{--gold-l:#D8B46A;--gold-d:#8C6A22}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold-l:#D8B46A;--gold-d:#D8B46A}}
+:root[data-theme="dark"]{--gold-l:#D8B46A;--gold-d:#D8B46A}
+.ten-grid a{border-top-color:var(--gold-l)}
+.ten-grid a:hover{border-color:var(--gold-l)}
+.ten-grid .no{color:var(--gold-d);font-weight:600}
+.main-axes>li,.main-axes>li.g-g,.main-axes>li.g-y,.main-axes>li.g-r,.main-axes>li.g-n{border-top-color:var(--gold-l)}
+.part[aria-selected="true"]{border-color:var(--gold-l);box-shadow:inset 0 0 0 1px var(--gold-l);background:color-mix(in srgb,var(--gold-l) 14%,var(--sheet))}
+.part[aria-selected="true"] b{color:var(--gold-d)}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
