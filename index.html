@@ -308,6 +308,11 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .map-old .zhint{inset-block-start:auto;bottom:14px;inset-inline-start:50%;transform:translateX(50%);white-space:nowrap;color:var(--mb-ink);background:color-mix(in srgb,var(--mb-paper) 80%,transparent);padding:2px 8px;border-radius:4px;z-index:1}
 .map-old .zctl{z-index:1}.map-old .peek{z-index:1}
 .map-old .zctl button{background:var(--mb-node);border-color:color-mix(in srgb,var(--mb-ink) 45%,transparent);color:var(--mb-burn)}
+.map-old .mapbg{transition:opacity .45s ease,filter .45s ease}
+.map-old.focus .mapbg{opacity:.22;filter:saturate(.4)}
+.map-old.focus .link.dim{opacity:.05}.map-old.focus .n-comp.dim,.map-old.focus .n-tag.dim{opacity:.22}
+.map-old.focus .link.hot{opacity:1;stroke-width:2.4}
+@media (prefers-reduced-motion:reduce){.map-old .mapbg{transition:none}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -947,6 +952,7 @@ function drawGraph(){
     const near = hub ? nbr.get(hub) : null;
     ns.style("display", d => vis.get(d.id) ? null : "none").classed("sel", d => d.id===hub).classed("dim", d => near ? !(d.id===hub || near.has(d.id)) : false);
     ls.style("display", d => vis.get(d.source.id) && vis.get(d.target.id) ? null : "none").classed("hot", d => hub && (d.source.id===hub || d.target.id===hub)).classed("dim", d => hub ? !(d.source.id===hub || d.target.id===hub) : false);
+    document.querySelector(".stage").classList.toggle("focus", !!hub);
     if (!hub) { peek.hidden = true; return; }
     peek.hidden = false;
     if (hub.startsWith("t:")) { const k = hub.slice(2), ms = L.filter(l => l.links.includes(k) && vis.get(l.id));
