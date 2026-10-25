@@ -507,6 +507,31 @@ html{overflow-x:clip}
 .band-slide .band-src{margin-top:6px}
 .band-art{background-size:cover;background-position:center 72%}
 @media (max-width:560px){.band .band-in{padding:48px 20px 48px}.band-art{background-size:auto 115%;background-position:48% bottom}}
+/* light-mode band */
+@media (prefers-color-scheme:light){
+:root:not([data-theme="dark"]) .band{background:#EEE4D0;color:var(--ink)}
+:root:not([data-theme="dark"]) .band-art{background-image:url(/img/band-art-l.webp);opacity:.5;z-index:-2}
+:root:not([data-theme="dark"]) .band-k{color:var(--gold-d)}
+:root:not([data-theme="dark"]) .band-q,:root:not([data-theme="dark"]) .band-slide .band-q{color:#1E1A14}
+:root:not([data-theme="dark"]) .band-s{color:#4A4236}
+:root:not([data-theme="dark"]) .band-src{color:#7A6F5E}
+:root:not([data-theme="dark"]) .band-dot i{background:rgba(140,106,34,.25)}
+:root:not([data-theme="dark"]) .band-dot i::after{background:var(--gold-d)}
+:root:not([data-theme="dark"]) .band-cta2{color:var(--gold-d);border-color:rgba(140,106,34,.45)}
+:root:not([data-theme="dark"]) .band-cta2:hover{color:#6E5218;border-color:#6E5218}
+}
+:root[data-theme="light"] .band{background:#EEE4D0;color:var(--ink)}
+:root[data-theme="light"] .band-art{background-image:url(/img/band-art-l.webp);opacity:.5;z-index:-2}
+:root[data-theme="light"] .band-k{color:var(--gold-d)}
+:root[data-theme="light"] .band-q,:root[data-theme="light"] .band-slide .band-q{color:#1E1A14}
+:root[data-theme="light"] .band-s{color:#4A4236}
+:root[data-theme="light"] .band-src{color:#7A6F5E}
+:root[data-theme="light"] .band-dot i{background:rgba(140,106,34,.25)}
+:root[data-theme="light"] .band-dot i::after{background:var(--gold-d)}
+:root[data-theme="light"] .band-cta2{color:var(--gold-d);border-color:rgba(140,106,34,.45)}
+:root[data-theme="light"] .band-cta2:hover{color:#6E5218;border-color:#6E5218}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .band::before{background:radial-gradient(ellipse 46% 52% at 50% 46%,rgba(238,228,208,.92),rgba(238,228,208,.55) 55%,rgba(238,228,208,0) 85%)}}
+:root[data-theme="light"] .band::before{background:radial-gradient(ellipse 46% 52% at 50% 46%,rgba(238,228,208,.92),rgba(238,228,208,.55) 55%,rgba(238,228,208,0) 85%)}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
