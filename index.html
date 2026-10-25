@@ -711,7 +711,7 @@ window.FAMILY = {
   }
 };
 </script><script>(function(){
-const L = window.LESSONS, T = window.TAGS, C = window.CHANNELS;
+const L = window.LESSONS.filter(l => l.video), T = window.TAGS, C = window.CHANNELS; /* الحلقات اللي لسه ما نزلتش على يوتيوب مش بتظهر */
 const TEN = ["abu-bakr","umar","uthman","ali","talha","zubayr","saad","abd-rahman","abu-ubayda","said"];
 const ORDER = [...TEN, "saad-muadh","anas-nadr","amr-jamuh","abu-dujana","ibn-masud","hudhayfa","marthad","musab","kaab","ibn-umar"];
 const DUR = {"saad-muadh":"٥٩ د","anas-nadr":"٤٤ د","amr-jamuh":"٥٠ د","abu-dujana":"٥٦ د","ibn-masud":"٥٤ د","hudhayfa":"١:١٩ س","marthad":"٤٦ د","musab":"١:٠٤ س"};
