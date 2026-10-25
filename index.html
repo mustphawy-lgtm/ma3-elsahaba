@@ -289,6 +289,24 @@ footer .gl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .intro-ep h1{font-family:var(--f-name);font-weight:400;font-size:clamp(44px,6.5vw,76px);line-height:1.5;margin:4px 0 14px}
 .intro-ep .lede{font-size:19px;line-height:1.75;color:var(--ink-2);margin:0}
 @media (max-width:820px){.intro-ep{grid-template-columns:1fr;gap:20px;padding-block:28px 0}}
+:root{--map-bg:#E9D9B4;--map-ink:#6B4A1F;--map-edge:rgba(96,60,18,.42);--map-node:#FBF4E2}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--map-bg:#2A2216;--map-ink:#C9A86A;--map-edge:rgba(0,0,0,.55);--map-node:#1C1810}}
+:root[data-theme="dark"]{--map-bg:#2A2216;--map-ink:#C9A86A;--map-edge:rgba(0,0,0,.55);--map-node:#1C1810}
+.stage.map-old{background-color:var(--map-bg);border:1px solid var(--map-ink);border-radius:6px;
+  background-image:radial-gradient(ellipse at 50% 45%,transparent 52%,var(--map-edge) 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .1 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .23 0 0 0 0 .08 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+  repeating-linear-gradient(0deg,transparent 0 79px,color-mix(in srgb,var(--map-ink) 14%,transparent) 79px 80px),
+  repeating-linear-gradient(90deg,transparent 0 79px,color-mix(in srgb,var(--map-ink) 14%,transparent) 79px 80px);
+  background-size:100% 100%,cover,240px 240px,80px 80px,80px 80px;
+  box-shadow:inset 0 0 0 7px var(--map-bg),inset 0 0 0 8px color-mix(in srgb,var(--map-ink) 55%,transparent),inset 0 0 0 11px var(--map-bg),inset 0 0 0 12px color-mix(in srgb,var(--map-ink) 35%,transparent),0 10px 30px -18px rgba(60,35,5,.45)}
+.map-old .compass{position:absolute;inset-inline-end:22px;bottom:22px;width:92px;height:92px;color:var(--map-ink);opacity:.55;pointer-events:none;font-family:var(--f-name)}
+.map-old .n-comp .fr{fill:var(--map-node);filter:drop-shadow(0 1px 1.5px rgba(70,45,10,.25))}
+.map-old .n-comp .nm{fill:#2A1E0E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .map-old .n-comp .nm{fill:var(--ink)}}
+:root[data-theme="dark"] .map-old .n-comp .nm{fill:var(--ink)}
+.map-old .link{opacity:.6}
+.map-old .zhint{color:var(--map-ink)}
+.map-old .zctl button{background:var(--map-node);border-color:color-mix(in srgb,var(--map-ink) 45%,transparent);color:var(--map-ink)}
+@media (max-width:760px){.map-old .compass{width:60px;height:60px;inset-inline-end:14px;bottom:14px}}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -488,6 +506,66 @@ window.OTHERS = {
  "kaab":[{k:"kamali",v:"trQOIabAkuQ",d:"١٧ د"},{k:"shoman",v:"lnO-plE2hXE",d:"١:١١ س"},{k:"samir",v:"tP86rHJ5r6E",d:"١٥ د"},{k:"awadi",v:"EOQwhVOVTTc",d:"٢٤ د"},{k:"khamis",v:"0FWa-PbqU5U",d:"٢١ د"},{k:"sirgani",v:"LRlt4XMH_RI",d:"٥ د"}],
  "ibn-umar":[{k:"kamali",v:"J_uIWm15F8E",d:"١٦ د"}]
 };
+</script><script>/* المعاني: تعريفها ومرادفاتها للبحث، وتوزيعها على الصحابة حسب قصصهم في الحلقات */
+(function(){
+const TH = {
+  sidq:   ["الصدق", "صدق صادق الصديق صديق"],
+  shajaa: ["الشجاعة والقوة", "شجاعة شجاع القوة قوة قوي البطولة بطل الفروسية فارس الإقدام"],
+  thabat: ["الثبات والصبر", "ثبات الثبات صبر الصبر الابتلاء ابتلاء التعذيب تعذيب المحنة"],
+  tadhiya:["التضحية والفداء", "تضحية فداء فدى البذل بذل"],
+  shahada:["الشهادة", "شهيد شهداء الاستشهاد استشهاد الموت في سبيل الله"],
+  hubb:   ["حب النبي ﷺ", "حب محبة النبي الرسول الصحبة صحبة الحواري الدفاع عن النبي"],
+  amana:  ["الأمانة", "أمانة أمين الأمين الثقة السر"],
+  qiyada:["القيادة", "قيادة قائد أمير الإمارة الخلافة خليفة الحكم سيد"],
+  adl:    ["العدل", "عدل عادل الحق القضاء"],
+  infaq:  ["الإنفاق والكرم", "إنفاق انفاق الكرم كرم الجود جواد الصدقة صدقة المال"],
+  zuhd:   ["الزهد", "زهد زاهد الدنيا التقشف الورع ورع"],
+  ilm:    ["العلم والفقه", "علم العلم فقه الفقه طلب العلم فتوى"],
+  quran:  ["القرآن", "قرآن القران مصحف تلاوة حفظ"],
+  dawa:   ["الدعوة", "دعوة الدعوة إلى الله داعية التبليغ"],
+  sabq:   ["السبق إلى الإسلام", "السبق السابقون أول من أسلم"],
+  wafa:   ["الوفاء بالعهد", "وفاء العهد الوعد البيعة"],
+  tawba:  ["التوبة", "توبة تاب الرجوع إلى الله"],
+  haya:   ["الحياء", "حياء الحيا الخجل"],
+  iffa:   ["العفة", "عفة عفيف التعفف الشهوة"],
+  birr:   ["بر الوالدين", "بر الأم الأب الوالدين"],
+  ittiba: ["اتباع السنة", "اتباع الاتباع السنة سنة الاقتداء"],
+  fitna:  ["الفتنة بين الصحابة", "فتنة الفتن الجمل صفين"],
+  dua:    ["استجابة الدعاء", "دعاء الدعاء مستجاب الدعوة"],
+  ikhfa:  ["إخفاء العمل", "إخفاء الخفي الخبيئة الإخلاص"],
+  bait:   ["الدعوة في البيت", "البيت الأسرة الزوجة الأولاد"],
+  forsa:  ["الفرصة الفائتة", "الفرصة فرصة"],
+  taswif: ["التسويف", "تسويف التأجيل"]
+};
+const MAP = {
+  "abu-bakr":   ["sidq","sabq","hubb","dawa","thabat","infaq","qiyada","ittiba","quran"],
+  "umar":       ["shajaa","adl","qiyada","zuhd","quran","shahada","ilm"],
+  "uthman":     ["haya","infaq","quran","thabat","shahada","fitna","sabq"],
+  "ali":        ["shajaa","ilm","adl","qiyada","fitna","shahada","hubb","sabq"],
+  "talha":      ["tadhiya","hubb","infaq","shajaa","sidq","shahada","fitna","sabq"],
+  "zubayr":     ["shajaa","hubb","thabat","tadhiya","shahada","fitna","sabq"],
+  "saad":       ["shajaa","birr","thabat","dua","qiyada","ikhfa","fitna","hubb","sabq"],
+  "abd-rahman": ["infaq","zuhd","iffa","sabq","qiyada"],
+  "abu-ubayda": ["amana","zuhd","qiyada","shajaa","hubb","sabq"],
+  "said":       ["ikhfa","bait","dua","thabat","sabq","dawa"],
+  "abu-dujana": ["shajaa","hubb","wafa","tadhiya"],
+  "kaab":       ["sidq","tawba","taswif","thabat"],
+  "anas-nadr":  ["sidq","wafa","shajaa","shahada","forsa","tadhiya"],
+  "amr-jamuh":  ["shahada","tadhiya","bait","wafa"],
+  "saad-muadh": ["qiyada","dawa","amana","shajaa","shahada","adl"],
+  "hudhayfa":   ["amana","shajaa","fitna","ilm"],
+  "ibn-umar":   ["ittiba","zuhd","ilm","fitna"],
+  "ibn-masud":  ["quran","ilm","amana","shajaa","hubb","sabq"],
+  "marthad":    ["iffa","sidq","shahada","thabat"],
+  "musab":      ["dawa","tadhiya","zuhd","thabat","shahada","quran"]
+};
+for (const k in window.TAGS) if (window.TAGS[k].kind === "theme") delete window.TAGS[k];
+for (const [k,[label,alias]] of Object.entries(TH)) window.TAGS[k] = {label, kind:"theme", alias};
+for (const l of window.LESSONS) {
+  const m = MAP[l.id]; if (!m) continue;
+  l.links = l.links.filter(x => window.TAGS[x] && window.TAGS[x].kind !== "theme").concat(m);
+}
+})();
 </script><script>/* أنساب الصحابة: كل اسم من مصدره. ابن سعد = الطبقات الكبرى ط دار صادر. */
 window.FAMILY = {
   "saad-muadh": {
@@ -779,8 +857,9 @@ function familyHTML(l){
 }
 
 /* ---------- الخريطة ---------- */
+const norm = s => String(s).replace(/[\u064B-\u0652\u0640]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي");
 let pendingTag = null;
-const mapShow = {ansar:true, muhajir:true, ten:true, event:true, tribe:true, theme:true};
+const mapShow = {ansar:true, muhajir:true, ten:true, event:false, tribe:false, theme:false};
 const isTen = l => !!l.ten;
 const GNAME = {ansar:"أنصاري", muhajir:"مهاجري", other:"حليف الأنصار"};
 function mapView(){
@@ -794,7 +873,7 @@ function mapView(){
     <span class="msep" aria-hidden="true"></span>
     ${[["event","الغزوات"],["tribe","القبائل"],["theme","المعاني"]].map(([k,t]) => `<button class="tl k-${k}" data-k="${k}" aria-pressed="${mapShow[k]}"><i></i>${t}</button>`).join("")}
   </div>
-  <div class="stage"><svg id="graph" role="img" aria-label="شبكة الصحابة"></svg><div class="zctl" role="group" aria-label="التكبير"><button data-z="in" aria-label="تكبير">+</button><button data-z="out" aria-label="تصغير">−</button><button data-z="fit" aria-label="عرض الكل">⤢</button></div><span class="zhint">اسحب للتحريك · كبّر بالعجلة أو بإصبعين</span><div class="peek" id="peek" hidden></div></div>
+  <div class="stage map-old"><svg class="compass" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width=".6" stroke-dasharray="2 3"/><path d="M50 6 L56 50 L50 94 L44 50Z" fill="currentColor" opacity=".85"/><path d="M6 50 L50 44 L94 50 L50 56Z" fill="currentColor" opacity=".55"/><path d="M50 6 L56 50 L50 50Z" fill="var(--map-bg)"/><path d="M94 50 L50 56 L50 50Z" fill="var(--map-bg)"/><text x="50" y="4" text-anchor="middle" font-size="9" fill="currentColor">ش</text></svg><svg id="graph" role="img" aria-label="شبكة الصحابة"></svg><div class="zctl" role="group" aria-label="التكبير"><button data-z="in" aria-label="تكبير">+</button><button data-z="out" aria-label="تصغير">−</button><button data-z="fit" aria-label="عرض الكل">⤢</button></div><span class="zhint">اسحب للتحريك · كبّر بالعجلة أو بإصبعين</span><div class="peek" id="peek" hidden></div></div>
   </div>`;
   drawGraph();
 }
@@ -805,7 +884,7 @@ function drawGraph(){
   const cw = s => [...s].length * 11 + 34, tgw = s => [...s].length * 7.2 + 22;
   const nodes = [...L.map(l => ({id:l.id, type:"comp", label:l.name, grp:group(l), ten:isTen(l), w:cw(l.name)})), ...[...used].map(k => ({id:"t:"+k, type:"tag", kind:T[k].kind, label:T[k].label, w:tgw(T[k].label)}))];
   const links = L.flatMap(l => mk(l).map(k => ({source:l.id, target:"t:"+k})));
-  const nbr = new Map(nodes.map(n => [n.id, new Set()]));
+  const nbr = new Map(nodes.map(n => [n.id, new Set()])), byNode = new Map(nodes.map(n => [n.id, n]));
   links.forEach(e => { nbr.get(e.source).add(e.target); nbr.get(e.target).add(e.source); });
   const g = svg.append("g");
   const ls = g.append("g").selectAll("path").data(links).join("path").attr("class", d => "link k-" + T[d.target.slice(2)].kind);
@@ -832,27 +911,28 @@ function drawGraph(){
       ls.attr("d", d => { const s = d.source, t = d.target, mx = (s.x+t.x)/2; return `M${s.x},${s.y} Q${mx},${s.y} ${t.x},${t.y}`; });
       ns.attr("transform", d => `translate(${d.x},${d.y})`);
     });
-  const zoom = d3.zoom().scaleExtent([.3, 3]).on("zoom", e => g.attr("transform", e.transform));
+  let touched = false;
+  const zoom = d3.zoom().scaleExtent([.3, 3]).on("zoom", e => { g.attr("transform", e.transform); if (e.sourceEvent) touched = true; });
   svg.call(zoom).on("dblclick.zoom", null);
   const dur = reduce ? 0 : 650;
   const bbox = list => { const v = list.filter(d => vis0(d)); const xs = v.flatMap(d => [d.x - d.w/2, d.x + d.w/2]), ys = v.flatMap(d => [d.y - 32, d.y + 22]); return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)]; };
   const fitTo = (list, maxK = 1.4, t = dur) => { if (!list.length) return; const [x0,y0,x1,y1] = bbox(list), pad = 28; const k = Math.min(maxK, (W - pad*2)/(x1-x0||1), (H - pad*2)/(y1-y0||1));
     svg.transition().duration(t).ease(d3.easeCubicInOut).call(zoom.transform, d3.zoomIdentity.translate(W/2, H/2).scale(k).translate(-(x0+x1)/2, -(y0+y1)/2)); };
   let vis0 = () => true;
-  const size = () => { const r = svg.node().getBoundingClientRect(); W = r.width||800; H = r.height||600; svg.attr("viewBox",`0 0 ${W} ${H}`); sim.force("x").x(W/2); sim.force("y").y(H/2); };
+  const size = () => { const r = svg.node().getBoundingClientRect(); W = r.width||800; H = r.height||600; svg.attr("viewBox",`0 0 ${W} ${H}`); const tall = H > W; sim.force("x").x(W/2).strength(tall ? .2 : .07); sim.force("y").y(H/2).strength(tall ? .04 : .12); };
   size(); window.onresize = () => { size(); fitTo(nodes, 1.4, 0); };
   if (!reduce) nodes.forEach((d,i) => { d.x = W/2 + Math.cos(i) * 20; d.y = H/2 + Math.sin(i) * 20; });
   let fitted = false;
   if (reduce) { for (let i=0;i<400;i++) sim.tick(); sim.stop(); fitTo(nodes, 1.4, 0); fitted = true; }
-  else { sim.alpha(1).restart(); setTimeout(() => { if (!fitted) { fitted = true; fitTo(nodes); } }, 1400); sim.on("end.fit", () => { if (!fitted) { fitted = true; fitTo(nodes); } }); }
+  else { sim.stop(); for (let i=0;i<260;i++) sim.tick(); ns.attr("transform", d => `translate(${d.x},${d.y})`); queueMicrotask(() => fitTo(nodes, 1.4, 0)); sim.alpha(.25).restart(); sim.on("end.fit", () => { fitted = true; if (!touched && !hub) fitTo(nodes); }); }
   document.querySelectorAll("[data-z]").forEach(b => b.onclick = () => { const z = b.dataset.z; if (z === "fit") fitTo(nodes); else svg.transition().duration(reduce?0:300).call(zoom.scaleBy, z === "in" ? 1.35 : 1/1.35); });
   ns.call(d3.drag().on("start",(e,d)=>{ if(!e.active) sim.alphaTarget(.2).restart(); d.fx=d.x; d.fy=d.y; }).on("drag",(e,d)=>{ d.fx=e.x; d.fy=e.y; }).on("end",(e,d)=>{ if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
   let hub = null; const peek = document.getElementById("peek");
   function paint(){
     const vis = new Map(nodes.map(d => [d.id, d.type==="comp" ? alive(d) : false]));
     nodes.filter(d => d.type==="tag").forEach(d => vis.set(d.id, show[d.kind] && [...nbr.get(d.id)].some(c => vis.get(c))));
+    if (hub) { if (hub.startsWith("t:")) vis.set(hub, true); nbr.get(hub).forEach(id => { const n = byNode.get(id); if (n.type === "tag" || alive(n)) vis.set(id, true); }); }
     vis0 = d => vis.get(d.id);
-    if (hub && !vis.get(hub)) hub = null;
     const near = hub ? nbr.get(hub) : null;
     ns.style("display", d => vis.get(d.id) ? null : "none").classed("sel", d => d.id===hub).classed("dim", d => near ? !(d.id===hub || near.has(d.id)) : false);
     ls.style("display", d => vis.get(d.source.id) && vis.get(d.target.id) ? null : "none").classed("hot", d => hub && (d.source.id===hub || d.target.id===hub)).classed("dim", d => hub ? !(d.source.id===hub || d.target.id===hub) : false);
@@ -867,7 +947,7 @@ function drawGraph(){
   ns.on("click",(e,d)=>act(d)).on("keydown",(e,d)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); act(d); } });
   document.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { const k = b.dataset.k; show[k] = !show[k]; b.setAttribute("aria-pressed", show[k]); paint(); setTimeout(() => fitTo(nodes), 60); });
   document.querySelectorAll("[data-g]").forEach(c => c.onchange = () => { show[c.dataset.g] = c.checked; if (c.dataset.g === "muhajir") { const t = document.querySelector('[data-g="ten"]'); if (t && !t.disabled) { t.checked = c.checked; show.ten = c.checked; } } paint(); setTimeout(() => fitTo(nodes), 60); });
-  document.getElementById("q").oninput = e => { const v = e.target.value.trim(); const hit = v && nodes.find(n => n.label.includes(v)); hub = hit ? hit.id : null; paint(); if (hub) { const ids = new Set([hub, ...nbr.get(hub)]); fitTo(nodes.filter(n => ids.has(n.id)), 1.6); } };
+  document.getElementById("q").oninput = e => { const v = norm(e.target.value.trim()); const hit = v && (nodes.find(n => norm(n.label).includes(v)) || nodes.find(n => n.type === "tag" && norm(T[n.id.slice(2)].alias || "").split(" ").some(w => w && (w.includes(v) || v.includes(w))))); hub = hit ? hit.id : null; paint(); if (hub) { const ids = new Set([hub, ...nbr.get(hub)]); fitTo(nodes.filter(n => ids.has(n.id)), 1.6); } };
   if (pendingTag && nbr.has(pendingTag)) { hub = pendingTag; pendingTag = null; }
   paint();
 }
