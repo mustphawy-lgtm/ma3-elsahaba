@@ -1,4 +1,4 @@
-const V='ms-v39';
+const V='ms-v40';
 const CORE=['/','/manifest.webmanifest','/fonts/panorama.woff2','/fonts/zanjabeel.woff2','/icon-192.png','/icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))));self.clients.claim();});
