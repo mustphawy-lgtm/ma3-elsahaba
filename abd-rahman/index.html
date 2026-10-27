@@ -728,6 +728,18 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
 .sira-card h2{margin-top:4px!important}
 #siraMap .pin.hid{display:none}
 #siraMap text.act-lbl{fill:var(--sm-city);font-family:var(--f-name);font-weight:700;paint-order:stroke;stroke:var(--sm-land);stroke-width:4px;pointer-events:none}
+.pq-wrap{position:relative;flex:1 1 420px;max-width:620px}
+.pq{width:100%;font:500 15px var(--f-ui);color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:999px;padding:12px 44px 12px 18px;-webkit-appearance:none;appearance:none}
+.pq:focus{outline:2px solid var(--c-gold);outline-offset:2px}
+.pq-ic{position:absolute;inset-inline-start:16px;top:50%;translate:0 -50%;width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;pointer-events:none}
+.pqs{position:absolute;z-index:20;inset-inline:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;background:var(--sheet);border:1px solid var(--rule);border-radius:16px;box-shadow:0 16px 40px -14px rgba(15,18,32,.35);max-height:360px;overflow:auto}
+.pqs li{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer}
+.pqs li.on,.pqs li:hover{background:var(--paper)}
+.pqs b{font-family:var(--f-name);font-weight:400;font-size:19px;line-height:1.3;color:var(--ink)}
+.pqs em{font:normal 12.5px var(--f-ui);color:var(--muted);margin-inline-start:auto;white-space:nowrap}
+.pq-t{font:600 11px var(--f-ui);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pq-t.t-c{color:var(--c-gold);background:var(--c-gold-s)}.pq-t.t-e{color:var(--c-green);background:var(--c-green-s)}.pq-t.t-w{color:var(--c-ten);background:var(--c-ten-s)}
+@media (max-width:760px){.pq-wrap{flex-basis:100%}.pq{font-size:14px}}
 .sira-who .xtra-off{display:none}.sira-who.offopen .xtra-off{display:block}
 .who-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.who-btns .more-btn{margin:0}
 .who-off{border-color:color-mix(in srgb,var(--bad) 45%,transparent)!important;color:var(--bad)!important}
@@ -1564,10 +1576,10 @@ let pendingTag = null;
 const mapShow = {ansar:true, muhajir:true, ten:true, event:true, tribe:false, theme:false};
 const isTen = l => !!l.ten;
 const GNAME = {ansar:"أنصاري", muhajir:"مهاجري", other:"حليف الأنصار"};
-let siraI = 0, siraTimer = null, siraPick = "";
+let siraI = 0, siraTimer = null, siraPick = "", siraWord = "";
 function mapView(){
   view.innerHTML = `<div class="view">
-  <section class="map-h"><div><h1>رحلة السيرة</h1><p>تحرّك على الخط الزمني لترى أحداث السيرة الكبرى في مواضعها الحقيقية، ومن شهدها من الصحابة. واختر صحابيًا لترى أحداث حياته على الخريطة.</p></div></section>
+  <section class="map-h"><div><h1>رحلة السيرة</h1><p>تحرّك على الخط الزمني لترى أحداث السيرة الكبرى في مواضعها الحقيقية، ومن شهدها من الصحابة. وابحث عن حدث أو معنى أو صحابي لترى أحداثه على الخريطة.</p></div></section>
   <div id="mapBody"></div></div>`;
   clearInterval(siraTimer); siraTimer = null; if (sim) sim.stop(); window.onresize = null;
   siraView();
@@ -1586,9 +1598,8 @@ function siraView(){
   const places = [...new Set(E.map(e => e.at))];
   const cnt = {}; E.forEach(e => allWho(e).forEach(w => { if (!w[2]) cnt[w[0]] = (cnt[w[0]] || 0) + 1; }));
   const ids = Object.keys(cnt), ser = ORDER.filter(id => byId[id] && cnt[id]).concat(ids.filter(id => byId[id] && !ORDER.includes(id))), oth = ids.filter(id => !byId[id]);
-  const opt = id => `<option value="${id}" ${id === siraPick ? "selected" : ""}>${esc(sName(id))} (${ar(cnt[id])})</option>`;
   document.getElementById("mapBody").innerHTML = `
-  <div class="pick-bar"><label class="pick"><span>اختر صحابيًا</span><select id="pick"><option value="">كل الأحداث</option><optgroup label="صحابة السلسلة">${ser.map(opt).join("")}</optgroup><optgroup label="صحابة آخرون">${oth.map(opt).join("")}</optgroup></select></label><span class="pick-info" id="pickInfo"></span><button class="pick-x" id="pickX" type="button" hidden>إلغاء الاختيار</button></div>
+  <div class="pick-bar"><div class="pq-wrap"><svg class="pq-ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4.5 4.5"/></svg><input id="pq" class="pq" type="search" autocomplete="off" placeholder="اكتب حدثًا أو معنى أو اسم صحابي أو صحابية، مثل: بدر، الشهادة، الزبير" aria-label="ابحث في رحلة السيرة" role="combobox" aria-expanded="false" aria-controls="pqs"><ul class="pqs" id="pqs" role="listbox" hidden></ul></div><span class="pick-info" id="pickInfo"></span><button class="pick-x" id="pickX" type="button" hidden>مسح البحث</button></div>
   <div class="sira">
     <div class="sira-stage">
       <svg id="siraMap" viewBox="0 0 ${G.W} ${G.H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="خريطة أحداث السيرة">
@@ -1673,13 +1684,33 @@ function siraView(){
     fixLinks(whoBox);
     fixLinks(card);
   }
-  function pickSet(){ return siraPick ? E.map((e, j) => allWho(e).some(w => w[0] === siraPick && !w[2]) ? j : -1).filter(j => j >= 0) : null; }
+  const hay = E.map(e => norm([e.t, e.pl, e.text, e.q ? e.q.x : "", ...allWho(e).map(w => sName(w[0]) + " " + w[1])].join(" ")));
+  const wordHits = w => { const q = norm(w); return E.map((e, j) => hay[j].includes(q) ? j : -1).filter(j => j >= 0); };
+  function pickSet(){ return siraPick ? E.map((e, j) => allWho(e).some(w => w[0] === siraPick && !w[2]) ? j : -1).filter(j => j >= 0) : siraWord ? wordHits(siraWord) : null; }
   const stepTo = d => { const h = pickSet(); if (!h) return show(siraI + d); const nx = d > 0 ? h.find(j => j > siraI) : [...h].reverse().find(j => j < siraI); if (nx !== undefined) show(nx); };
-  const pk = document.getElementById("pick"), pInfo = document.getElementById("pickInfo"), pX = document.getElementById("pickX");
-  const syncPick = () => { const h = pickSet(); pX.hidden = !h; pInfo.textContent = h ? `${ar(h.length)} ${h.length > 2 && h.length < 11 ? "أحداث" : "حدثًا"} من ${ar(n)}` : "";
+  const pq = document.getElementById("pq"), pqs = document.getElementById("pqs"), pInfo = document.getElementById("pickInfo"), pX = document.getElementById("pickX");
+  const evN = k => k === 1 ? "حدث واحد" : k === 2 ? "حدثان" : `${ar(k)} ${k < 11 ? "أحداث" : "حدثًا"}`;
+  const syncPick = () => { const h = pickSet(); pX.hidden = !h; pInfo.textContent = h ? (h.length ? `${evN(h.length)} من ${ar(n)}` : "لا نتائج") : "";
     g.selectAll(".pin").classed("fade", function(){ return !!h && !h.some(j => E[j].at === this.dataset.p); }); };
-  pk.onchange = () => { stop(); siraPick = pk.value; syncPick(); const h = pickSet(); show(h ? (h.includes(siraI) ? siraI : h[0]) : siraI); };
-  pX.onclick = () => { pk.value = ""; pk.onchange(); };
+  const apply = () => { stop(); syncPick(); const h = pickSet(); show(h && h.length ? (h.includes(siraI) ? siraI : h[0]) : siraI); };
+  let sug = [], act = -1;
+  const closeS = () => { pqs.hidden = true; pq.setAttribute("aria-expanded", "false"); act = -1; };
+  const choose = it => { if (!it) return; closeS(); if (it.t === "c") { siraPick = it.id; siraWord = ""; pq.value = sName(it.id); apply(); }
+    else if (it.t === "e") { siraPick = ""; siraWord = ""; pq.value = E[it.i].t; syncPick(); stop(); show(it.i); }
+    else { siraPick = ""; siraWord = it.w; pq.value = it.w; apply(); } };
+  const renderS = () => { pqs.innerHTML = sug.map((it, k) => `<li role="option" id="pqo${k}" class="${k === act ? "on" : ""}" data-k="${k}"><span class="pq-t t-${it.t}">${{c:"صحابي", e:"حدث", w:"بحث"}[it.t]}</span><b>${esc(it.l)}</b><em>${esc(it.s)}</em></li>`).join("");
+    pqs.hidden = !sug.length; pq.setAttribute("aria-expanded", String(!!sug.length)); if (act >= 0) pq.setAttribute("aria-activedescendant", "pqo" + act); else pq.removeAttribute("aria-activedescendant");
+    pqs.querySelectorAll("li").forEach(li => li.onmousedown = ev => { ev.preventDefault(); choose(sug[+li.dataset.k]); }); };
+  const cIds = Object.keys(cnt).sort((a, b) => (byId[b] ? 1 : 0) - (byId[a] ? 1 : 0) || cnt[b] - cnt[a]);
+  pq.oninput = () => { const v = pq.value.trim(), q = norm(v); act = -1; if (!q) { sug = []; renderS(); if (siraPick || siraWord) { siraPick = ""; siraWord = ""; apply(); } return; }
+    const cs = cIds.filter(id => norm(sName(id)).includes(q)).slice(0, 5).map(id => ({t:"c", id, l:sName(id), s:evN(cnt[id])}));
+    const es = E.map((e, i) => ({e, i})).filter(({e}) => norm(e.t + " " + e.pl).includes(q)).slice(0, 4).map(({e, i}) => ({t:"e", i, l:e.t, s:e.d.split(" · ")[0]}));
+    const wh = wordHits(v); sug = [...cs, ...es, ...(wh.length && q.length > 1 ? [{t:"w", w:v, l:`كل ما فيه «${v}»`, s:evN(wh.length)}] : [])]; renderS(); };
+  pq.onkeydown = ev => { if (ev.key === "ArrowDown" || ev.key === "ArrowUp") { if (!sug.length) return; ev.preventDefault(); act = (act + (ev.key === "ArrowDown" ? 1 : -1) + sug.length) % sug.length; renderS(); }
+    else if (ev.key === "Enter") { ev.preventDefault(); choose(sug[act >= 0 ? act : 0]); } else if (ev.key === "Escape") closeS(); };
+  pq.onblur = () => setTimeout(closeS, 120);
+  pX.onclick = () => { pq.value = ""; siraPick = ""; siraWord = ""; closeS(); apply(); };
+  if (siraPick) pq.value = sName(siraPick); else if (siraWord) pq.value = siraWord;
   R.oninput = () => { stop(); show(+R.value, 700); };
   document.querySelectorAll("[data-step]").forEach(b => b.onclick = () => { stop(); stepTo(+b.dataset.step); });
   document.querySelectorAll(".tk").forEach(b => b.onclick = () => { stop(); show(+b.dataset.i); });
