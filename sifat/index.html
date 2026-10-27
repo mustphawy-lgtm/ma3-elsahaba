@@ -1077,7 +1077,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;

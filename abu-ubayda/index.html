@@ -613,7 +613,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     <p class="ui" style="color:var(--muted)">انقرض عقبه، كما ذكر ابن سعد</p>
     
     <p class="srcs ui">المصادر: طبقات ابن سعد · الاستيعاب</p></section>
-  <section class="others"><div class="sum-h"><h2>اسمع عن أبو عبيدة بن الجراح من مشايخ آخرين</h2></div>
+  <section class="others"><div class="sum-h"><h2>دروس أخرى عن أبي عبيدة بن الجراح</h2></div>
     <ul class="oth"><li><a href="https://www.youtube.com/watch?v=OlFse3QyPIc" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/OlFse3QyPIc/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سعيد الكملي</b><em>٢٥ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=8RRTcpHGpHA" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/8RRTcpHGpHA/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>أحمد عامر</b><em>٣٦ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=6Y_mldxwNqo" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/6Y_mldxwNqo/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>بودكاست وعي</b><em>١:٢٤ س · يوتيوب</em></a></li></ul></section>
   <nav class="pager" aria-label="الحلقات المجاورة">
     <a href="/abd-rahman/"><span class="eyebrow">السابقة</span><span class="n">عبد الرحمن بن عوف</span></a>
@@ -1103,7 +1103,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;

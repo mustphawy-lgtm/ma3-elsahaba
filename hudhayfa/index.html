@@ -619,7 +619,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     <p class="ui" style="color:var(--muted)">له عقب بالمدائن، ولم يسمّهم ابن سعد</p>
     <div class="flinks"><span class="eyebrow">صلات بحلقات تانية</span><a href="/saad-muadh/"><b>سعد بن معاذ</b><span>قومه حلفاء بني عبد الأشهل</span></a></div>
     <p class="srcs ui">المصادر: ابن سعد ٧/ ٣١٧ و٣/ ٤٤١</p></section>
-  <section class="others"><div class="sum-h"><h2>اسمع عن حذيفة بن اليمان من مشايخ آخرين</h2></div>
+  <section class="others"><div class="sum-h"><h2>دروس أخرى عن حذيفة بن اليمان</h2></div>
     <ul class="oth"><li><a href="https://www.youtube.com/watch?v=cC8Stedv90k" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/cC8Stedv90k/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سمير مصطفى</b><em>٣٠ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=cSlK_VY3PrM" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/cSlK_VY3PrM/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>أحمد عامر</b><em>٢٩ د · يوتيوب</em></a></li></ul></section>
   <nav class="pager" aria-label="الحلقات المجاورة">
     <a href="/ibn-masud/"><span class="eyebrow">السابقة</span><span class="n">عبد الله بن مسعود</span></a>
@@ -1109,7 +1109,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;

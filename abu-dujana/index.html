@@ -622,7 +622,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     
     
     <p class="srcs ui">المصادر: ابن سعد ٣/ ٥٥٦</p></section>
-  <section class="others"><div class="sum-h"><h2>اسمع عن أبو دجانة من مشايخ آخرين</h2></div>
+  <section class="others"><div class="sum-h"><h2>دروس أخرى عن أبي دجانة</h2></div>
     <ul class="oth"><li><a href="https://www.youtube.com/watch?v=gYoV0k0TK94" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/gYoV0k0TK94/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سمير مصطفى</b><em>٤٠ د · يوتيوب</em></a></li></ul></section>
   <nav class="pager" aria-label="الحلقات المجاورة">
     <a href="/amr-jamuh/"><span class="eyebrow">السابقة</span><span class="n">عمرو بن الجموح</span></a>
@@ -1112,7 +1112,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;

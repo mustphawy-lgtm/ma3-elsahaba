@@ -625,7 +625,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     
     <div class="flinks"><span class="eyebrow">صلات بحلقات تانية</span><a href="/abu-bakr/"><b>أبو بكر الصديق</b><span>صهره</span></a></div>
     <p class="srcs ui">المصادر: طبقات ابن سعد · الاستيعاب</p></section>
-  <section class="others"><div class="sum-h"><h2>اسمع عن الزبير بن العوام من مشايخ آخرين</h2></div>
+  <section class="others"><div class="sum-h"><h2>دروس أخرى عن الزبير بن العوام</h2></div>
     <ul class="oth"><li><a href="https://www.youtube.com/watch?v=b3norn9Y274" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/b3norn9Y274/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سعيد الكملي</b><em>٣٩ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=31f1cYRRYtc" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/31f1cYRRYtc/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>د. راغب السرجاني</b><em>٢٧ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=ffhsdPiGBDk" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/ffhsdPiGBDk/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>أحمد عامر</b><em>٤٢ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=MM1xqf5KiEM" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/MM1xqf5KiEM/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>بودكاست وعي</b><em>١:١١ س · يوتيوب</em></a></li></ul></section>
   <nav class="pager" aria-label="الحلقات المجاورة">
     <a href="/talha/"><span class="eyebrow">السابقة</span><span class="n">طلحة بن عبيد الله</span></a>
@@ -1115,7 +1115,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;

@@ -643,7 +643,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     
     <div class="flinks"><span class="eyebrow">صلات بحلقات تانية</span><a href="/zubayr/"><b>الزبير بن العوام</b><span>صهره، زوج أسماء</span></a><a href="/talha/"><b>طلحة بن عبيد الله</b><span>من بني تيم، وزوج ابنته أم كلثوم</span></a></div>
     <p class="srcs ui">المصادر: طبقات ابن سعد · الاستيعاب</p></section>
-  <section class="others"><div class="sum-h"><h2>اسمع عن أبو بكر الصديق من مشايخ آخرين</h2></div>
+  <section class="others"><div class="sum-h"><h2>دروس أخرى عن أبي بكر الصديق</h2></div>
     <ul class="oth"><li><a href="https://www.youtube.com/watch?v=esvjwRxHFag" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/esvjwRxHFag/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سعيد الكملي</b><em>٢٨ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=HUts5-vEtcc" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/HUts5-vEtcc/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>د. حازم شومان</b><em>٢٩ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=jQvN5e2FFGg" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/jQvN5e2FFGg/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ سمير مصطفى</b><em>٥٥ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=SrBU47e2uLQ" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/SrBU47e2uLQ/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ نبيل العوضي</b><em>٥٦ د · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=LNDcnzc2nyA" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/LNDcnzc2nyA/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>د. راغب السرجاني</b><em>١:٠١ س · يوتيوب</em></a></li><li><a href="https://www.youtube.com/watch?v=shBBDL8_JnY" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/shBBDL8_JnY/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>الشيخ عثمان الخميس</b><em>١:٤١ س · يوتيوب</em></a></li></ul></section>
   <nav class="pager" aria-label="الحلقات المجاورة">
     <span></span>
@@ -1133,7 +1133,7 @@ const ICON = {
 };
 function othersHTML(l){
   const O = (window.OTHERS||{})[l.id], SH = window.SHEIKHS||{}; if (!O || !O.length) return "";
-  return `<section class="others"><div class="sum-h"><h2>اسمع عن ${esc(l.name)} من مشايخ آخرين</h2></div>
+  return `<section class="others"><div class="sum-h"><h2>دروس أخرى عن ${esc(l.name.replace(/^أبو /, "أبي "))}</h2></div>
     <ul class="oth">${O.map(o => `<li><a href="${yt(o.v)}" target="_blank" rel="noopener"><span class="oc"><img src="https://i.ytimg.com/vi/${encodeURIComponent(o.v)}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span></span><b>${esc(SH[o.k]||o.k)}</b><em>${o.t ? esc(o.t) + " · " : ""}${esc(o.d)} · يوتيوب</em></a></li>`).join("")}</ul></section>`;
 }
 let thumbEl = null;
