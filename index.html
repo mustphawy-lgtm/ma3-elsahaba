@@ -723,6 +723,12 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
 .sc-full summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:color-mix(in srgb,var(--ec) 18%,transparent);font-size:13px}
 .sc-full[open] summary::before{content:"−"}
 .sc-full p{font-family:var(--f-name);font-size:19px!important;line-height:1.95!important;margin:10px 0 0!important;max-height:340px;overflow:auto;scrollbar-width:thin;padding-inline-end:4px}
+.sc-date{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:16px 0 2px}
+.sc-date b{word-spacing:.25em;font-family:var(--f-name);font-weight:400;font-size:30px;line-height:1.3;color:var(--ec)}
+.sc-date span{font:500 15px var(--f-ui);color:var(--muted)}
+.sira-card h2{margin-top:4px!important}
+#siraMap .pin.hid{display:none}
+#siraMap text.act-lbl{fill:var(--sm-city);font-family:var(--f-name);font-weight:700;paint-order:stroke;stroke:var(--sm-land);stroke-width:4px;pointer-events:none}
 .sira-who .xtra-off{display:none}.sira-who.offopen .xtra-off{display:block}
 .who-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.who-btns .more-btn{margin:0}
 .who-off{border-color:color-mix(in srgb,var(--bad) 45%,transparent)!important;color:var(--bad)!important}
@@ -736,7 +742,7 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
     <a class="mark" href="/" aria-label="مع الصحابة"><svg class="logo" viewBox="0 0 894.92 366.06" role="img" aria-label="مع الصحابة"><g fill="currentColor"><path d="M74.84,141.28c3.24,0,6.03-1.18,8.34-3.56,2.31-2.37,3.48-5.13,3.48-8.26s-1.16-6.02-3.48-8.34c-2.32-2.31-5.1-3.48-8.34-3.48s-5.88,1.16-8.26,3.48c-2.38,2.32-3.56,5.1-3.56,8.34s1.18,5.88,3.56,8.26c2.37,2.38,5.13,3.56,8.26,3.56Z"/><path d="M105.78,141.28c3.24,0,6.03-1.18,8.34-3.56,2.32-2.37,3.48-5.13,3.48-8.26s-1.16-6.02-3.48-8.34c-2.32-2.31-5.1-3.48-8.34-3.48s-5.88,1.16-8.26,3.48c-2.38,2.32-3.56,5.1-3.56,8.34s1.18,5.88,3.56,8.26c2.37,2.38,5.13,3.56,8.26,3.56Z"/><polygon points="136.9 166.84 139.68 171.36 172.02 151.89 168.2 145.63 136.9 166.84"/><path d="M157.94,313.05c-3.13,0-5.88,1.16-8.26,3.48-2.38,2.32-3.56,5.1-3.56,8.34s1.18,5.88,3.56,8.26c2.37,2.38,5.13,3.56,8.26,3.56s6.03-1.18,8.34-3.56c2.31-2.37,3.48-5.13,3.48-8.26s-1.16-6.02-3.48-8.34c-2.32-2.31-5.1-3.48-8.34-3.48Z"/><path d="M155.5,205.61c-6.38,5.21-12.34,9.56-17.91,13.04,2.55,3.02,4.23,7.36,5.04,13.04.81,5.68,1.28,11.82,1.39,18.43.12,6.61.17,13.16.17,19.64v3.48h-1.14c-6.49,0-10.43-1.56-11.82-4.69s-2.09-6.2-2.09-9.21v-118.92c-4.64,5.8-10.14,11.3-16.52,16.52-6.38,5.22-12.34,9.56-17.91,13.04,1.85,2.32,3.3,5.56,4.35,9.74,1.04,4.17,1.68,8.58,1.91,13.21-10.66,2.09-21.04,5.97-31.12,11.65-10.08,5.68-18.37,12.87-24.86,21.56-6.49,8.69-9.74,18.72-9.74,30.08,0,10.66,2.84,18.9,8.52,24.69,5.68,5.8,12.87,9.91,21.56,12.34,8.69,2.43,17.56,3.82,26.6,4.17s16.8.4,23.3.17h42.86c6.72,0,10.72-1.56,12-4.69,1.27-3.13,1.91-6.2,1.91-9.21v-94.58c-4.64,5.8-10.14,11.3-16.52,16.52ZM96.65,245.94c-1.04,1.04-2.26,1.56-3.65,1.56s-2.61-.52-3.65-1.56c-1.04-1.04-1.56-2.26-1.56-3.65s.52-2.61,1.56-3.65c1.04-1.04,2.26-1.56,3.65-1.56s2.61.52,3.65,1.56,1.56,2.26,1.56,3.65-.52,2.61-1.56,3.65Z"/><polygon points="415.67 153.97 411.85 147.72 380.56 168.93 383.34 173.45 415.67 153.97"/><path d="M542.93,66.01c1.86,4.41,3.07,10.43,3.65,18.08.58,7.65.93,15.36,1.04,23.12.12,7.77.17,14.2.17,19.3v111.96h-6.95v1.69c-1.06-.51-1.94-1.12-2.61-1.86-2.21-2.43-3.54-4.46-4-6.09-.93-2.78-1.68-5.44-2.26-8-.58-2.55-1.45-5.33-2.61-8.34-.7-2.09-1.86-3.48-3.48-4.17-1.62-.69-3.02-1.04-4.17-1.04h-168.29c-3.48,0-7.88-.11-13.21-.35-5.34-.23-10.95-.75-16.86-1.56-5.91-.81-11.19-1.85-15.82-3.13-4.64-1.27-8-2.96-10.08-5.04v-42.77c-4.64,5.8-10.14,11.3-16.52,16.52-6.38,5.21-12.34,9.56-17.91,13.04,3.02,3.71,4.87,9.39,5.56,17.04s1.04,15.53,1.04,23.64v13.91h-6.5c-7.97-5.52-15.86-11.9-23.66-19.12-3.48,4.64-7.07,8.99-10.78,13.04-3.71,4.06-7.54,8.06-11.47,11.99,5.1,4.64,10.66,9.16,16.69,13.56,6.03,4.41,12.05,8.34,18.08,11.82h-27.82c-6.03,0-9.86-1.56-11.47-4.69-1.62-3.13-2.43-6.2-2.43-9.21-.93-38.25-1.39-76.43-1.39-114.57s.35-76.32,1.04-114.57c-4.41,6.73-9.68,13.45-15.82,20.17-6.14,6.73-11.88,12.06-17.21,15.99,1.86,5.56,3.3,14.37,4.35,26.42,1.04,12.06,1.79,25.85,2.26,41.38.46,15.53.7,31.41.7,47.64s-.12,31.59-.35,46.07c-.23,14.49-.47,26.77-.7,36.86-.23,10.08-.47,16.4-.7,18.95-.23,3.02.4,6.08,1.91,9.21,1.5,3.13,5.5,4.69,12,4.69h165.16c3.24-2.78,7.13-6.14,11.65-10.08,4.52-3.94,9.79-7.76,15.82-11.47-17.16-.23-34.19-1.68-51.11-4.35-7.91-1.24-15.76-3.06-23.56-5.39h247.4c6.72,0,10.72-1.56,12-4.69,1.27-3.13,1.91-6.2,1.91-9.22V30.19c-4.41,6.49-9.62,13.04-15.65,19.65-6.03,6.61-11.71,12-17.04,16.17ZM319.36,241.94c-4.64,0-9.04-.23-13.21-.69-4.17-.46-6.84-2.9-8-7.3,4.17.23,8.05.47,11.65.7,3.59.23,6.78.35,9.56.35h178.02l1.04,6.95h-179.07Z"/><path d="M709.48,267.33c-12.98.47-25.44-.81-37.38-3.83-11.94-3.01-22.49-7.76-31.64-14.26-9.16-6.49-16.34-14.78-21.56-24.86-5.22-10.08-7.71-21.85-7.48-35.29.46-14.14,1.33-35.12,2.61-62.94,1.27-27.82,1.79-59.92,1.56-96.31-4.41,6.95-9.74,14.03-15.99,21.21-6.26,7.19-12.4,13.1-18.43,17.73,1.62,2.78,2.96,6.43,4,10.95,1.04,4.52,1.79,9.86,2.26,15.99.46,6.14.75,13.1.87,20.86.11,7.77.05,16.23-.17,25.38-.23,9.16-.52,19.01-.87,29.56-.35,10.55-.75,21.62-1.22,33.21-.7,17.38.98,32.11,5.04,44.16,4.05,12.06,9.85,21.85,17.38,29.38,7.53,7.54,16.22,12.98,26.08,16.34,9.85,3.36,20.34,5.04,31.47,5.04,13.21,0,26.83-2.14,40.86-6.43,14.02-4.29,27.7-10.66,41.03-19.12,13.33-8.46,25.56-18.83,36.68-31.12-11.13,7.65-23.18,13.51-36.16,17.56-12.98,4.06-25.96,6.32-38.94,6.78Z"/><path d="M851.92,105.35c-4.87-11.47-11.3-20.86-19.3-28.17-8-7.3-16.98-10.95-26.95-10.95s-18.66,3.65-26.77,10.95c-8.12,7.3-14.6,16.69-19.47,28.17-4.87,11.47-7.3,23.7-7.3,36.68v5.56h-42.07l28.16-41.72c-4.87-8.81-12.17-16.34-21.91-22.6-9.74-6.26-19.82-9.39-30.25-9.39s-20.51,3.13-30.25,9.39c-9.74,6.26-17.04,13.79-21.91,22.6l30.95,45.55c-7.19,3.25-13.56,8.52-19.12,15.82-5.56,7.3-8.35,15.82-8.35,25.56,0,12.28,3.36,22.25,10.08,29.9,6.72,7.65,15.3,13.04,25.73,16.17,10.43,3.13,21.38,4.11,32.86,2.96,11.47-1.16,21.85-4.17,31.12-9.04-22.02,1.39-39.06-1.69-51.11-9.21-12.06-7.54-18.08-16.75-18.08-27.64,0-6.73,1.85-11.77,5.56-15.13,3.7-3.36,8.22-5.68,13.56-6.95,5.33-1.28,10.54-1.91,15.65-1.91h102.92c14.37,0,25.38-.87,33.03-2.61,7.65-1.74,12.98-4.81,15.99-9.22,3.01-4.4,4.52-10.43,4.52-18.08,0-12.98-2.43-25.21-7.3-36.68ZM689.72,121.69c-1.04,1.04-2.26,1.56-3.65,1.56s-2.61-.52-3.65-1.56c-1.04-1.04-1.56-2.26-1.56-3.65s.52-2.61,1.56-3.65c1.04-1.04,2.26-1.56,3.65-1.56s2.61.52,3.65,1.56c1.04,1.04,1.57,2.26,1.57,3.65s-.52,2.61-1.57,3.65ZM808.98,127.25c-1.04,1.04-2.26,1.56-3.65,1.56s-2.61-.52-3.65-1.56-1.56-2.26-1.56-3.65.52-2.61,1.56-3.65c1.04-1.04,2.26-1.56,3.65-1.56s2.61.52,3.65,1.56c1.04,1.04,1.56,2.26,1.56,3.65s-.52,2.61-1.56,3.65Z"/></g></svg></a>
     <nav class="nav" aria-label="التنقل">
       <a href="/" data-v="home">الحلقات</a>
-      <a href="/map/" data-v="map">الخريطة</a>
+      <a href="/map/" data-v="map">رحلة السيرة</a>
       <a href="/sifat/" data-v="sifat">صفاتهم</a>
       <a href="/about/" data-v="about">عن السلسلة</a>
       <button class="theme-t" id="themeT" type="button" aria-label="الوضع الليلي"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button>
@@ -1059,16 +1065,16 @@ for (const l of window.LESSONS) {
    era: m = مكة، d = المدينة، a = بعد الوفاة. at = مفتاح الموضع في sira-geo. z = درجة التقريب. off = لم يشهده (مع السبب). */
 window.SIRA_ERAS = [["m","العهد المكي"],["d","العهد المدني"],["a","الخلافة الراشدة"]];
 window.SIRA = [
- {id:"bitha", era:"m", t:"البعثة", d:"١٣ ق.هـ · ٦١٠م", at:"hira", pl:"غار حراء، مكة", z:5,
+ {id:"bitha", era:"m", t:"البعثة", d:"١٣ ق.هـ · ٦١٠م", at:"hira", pl:"غار حراء، مكة", z:9,
   text:"نزل الوحي على النبي ﷺ في غار حراء، فآمنت به خديجة رضي الله عنها، ثم كان أول من آمن به من الرجال أبو بكر، ومن الصبيان علي.",
   who:[["abu-bakr","أول من أسلم من الرجال"],["ali","أول من أسلم من الصبيان، ونشأ في بيت النبي ﷺ"]]},
- {id:"sabiqun", era:"m", t:"السابقون الأولون", d:"١–٣ من البعثة", at:"makka", pl:"مكة، دار الأرقم", z:5,
+ {id:"sabiqun", era:"m", t:"السابقون الأولون", d:"١–٣ من البعثة", at:"makka", pl:"مكة، دار الأرقم", z:8,
   text:"دعا أبو بكر من يثق بهم، فأسلم على يده نفرٌ من كبار الصحابة، وكانت دار الأرقم بن أبي الأرقم مجلس النبي ﷺ بأصحابه سرًّا.",
   who:[["uthman","أسلم على يد أبي بكر"],["zubayr","أسلم على يد أبي بكر وهو فتى"],["abd-rahman","أسلم على يد أبي بكر"],["saad","أسلم على يد أبي بكر"],["talha","أسلم على يد أبي بكر"],["abu-ubayda","من السابقين الأولين"],["said","من السابقين، أسلم هو وزوجته فاطمة أخت عمر"],["ibn-masud","من السابقين، وأول من جهر بالقرآن عند الكعبة في رواية ابن إسحاق"],["musab","أسلم في دار الأرقم وكتم إسلامه عن أمه"]]},
  {id:"habasha", era:"m", t:"الهجرة إلى الحبشة", d:"٥ من البعثة · ٦١٥م", at:"habasha", pl:"أكسوم، الحبشة", path:["makka","habasha"], z:1.25,
   text:"لما اشتد أذى قريش أذن النبي ﷺ لأصحابه بالهجرة إلى الحبشة، إلى النجاشي، وكان ملكًا لا يُظلم عنده أحد كما في رواية أهل السير.",
   who:[["uthman","هاجر بزوجته رقية بنت النبي ﷺ"],["zubayr","من مهاجري الحبشة"],["abd-rahman","من مهاجري الحبشة"],["musab","من مهاجري الحبشة"],["ibn-masud","من مهاجري الحبشة"]]},
- {id:"umar", era:"m", t:"إسلام عمر", d:"٦ من البعثة · ٦١٦م", at:"makka", pl:"مكة", z:5,
+ {id:"umar", era:"m", t:"إسلام عمر", d:"٦ من البعثة · ٦١٦م", at:"makka", pl:"مكة", z:8,
   text:"أسلم عمر بن الخطاب فكان إسلامه فتحًا، وخرج المسلمون يصلّون عند الكعبة.",
   q:{x:"مَا زِلْنَا أَعِزَّةً مُنْذُ أَسْلَمَ عُمَرُ", s:"عبد الله بن مسعود، البخاري ٣٦٨٤"},
   who:[["umar","أعزّ الله به الإسلام"],["said","قال: «لقد رأيتُني وإن عمر لموثقي على الإسلام» قبل أن يُسلم عمر، البخاري ٣٨٦٢"],["ibn-masud","راوي الأثر"]]},
@@ -1572,6 +1578,7 @@ const ERA_NAME = Object.fromEntries(window.SIRA_ERAS || []);
 const PIN = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s-5.5-5.2-5.5-9.3a5.5 5.5 0 0 1 11 0C15.5 12.8 10 18 10 18Z"/><circle cx="10" cy="8.6" r="2"/></svg>';
 const allWho = e => e.who.concat((window.SIRA_MORE||{})[e.id] || []);
 const sName = id => byId[id] ? byId[id].name : ((window.SIRA_NAMES||{})[id] || (window.LESSONS.find(l => l.id === id) || {}).name || id);
+const PLN = {makka:"مكة",hira:"غار حراء",madina:"المدينة",uhud:"جبل أُحد",badr:"بدر",habasha:"أكسوم",rajee:"الرجيع",hudaybiya:"الحديبية",khaybar:"خيبر",tabuk:"تبوك",yamama:"اليمامة",yarmouk:"اليرموك",qadisiyya:"القادسية",amwas:"عمواس",fustat:"الفسطاط",nahawand:"نهاوند",basra:"البصرة",siffin:"صفين",nahrawan:"النهروان",kufa:"الكوفة"};
 function siraView(){
   const G = window.SIRA_GEO, E = window.SIRA, n = E.length, P = G.places;
   const pct = i => (i/(n-1)*100).toFixed(3) + "%";
@@ -1589,7 +1596,7 @@ function siraView(){
         <g class="sm"><rect class="sea" x="-2000" y="-2000" width="${G.W+4000}" height="${G.H+4000}"/>${window.SIRA_ART ? `<image class="art art-l" href="${window.SIRA_ART.l}" x="-300" y="-300" width="1600" height="1700" preserveAspectRatio="none"/><image class="art art-d" href="${window.SIRA_ART.d}" x="-300" y="-300" width="1600" height="1700" preserveAspectRatio="none"/>` : `<path class="land" d="${G.land}"/>`}
         <g class="lbl">${G.labels.map(([t,x,y,k]) => `<text class="${k}" x="${x}" y="${y}" data-k="${k}">${t}</text>`).join("")}</g>
         <g class="routes"></g>
-        <g class="pins">${places.map(p => `<g class="pin" data-p="${p}" transform="translate(${P[p][0]},${P[p][1]})"><circle class="halo" r="14"/><circle class="dot" r="5"/></g>`).join("")}</g></g>
+        <g class="pins">${places.map(p => `<g class="pin" data-p="${p}" transform="translate(${P[p][0]},${P[p][1]})"><circle class="halo" r="14"/><circle class="dot" r="5"/></g>`).join("")}<text class="act-lbl" x="0" y="0"></text></g></g>
       </svg>
       <div class="zctl" role="group" aria-label="التكبير"><button data-sz="in" aria-label="تكبير">+</button><button data-sz="out" aria-label="تصغير">−</button><button data-sz="fit" aria-label="عرض الجزيرة كلها">⤢</button></div>
       <span class="sira-note">المواضع والتواريخ على أشهر الأقوال، وبعضها تقريبي</span>
@@ -1608,14 +1615,20 @@ function siraView(){
     <section class="sira-who" id="siraWho" aria-label="الصحابة في الحدث"></section>
   </div>`;
   const svg = d3.select("#siraMap"), g = svg.select(".sm"), node = svg.node();
-  let K = 1;
+  let K = 1, curAt = "", actName = "";
   const PX = {city:15,town:12.5,reg:13.5,sea:13,riv:11.5}, OFF = {city:1,town:1};
   const scaleBits = k => { K = k; const r = node.getBoundingClientRect(), u = 1 / ((Math.max(r.width/G.W, r.height/G.H) || 1) * k); /* وحدة الخريطة لكل بكسل شاشة */
     g.selectAll(".lbl text").each(function(){ const c = this.dataset.k; this.setAttribute("font-size", PX[c]*u); this.setAttribute("dy", OFF[c] ? -11*u : 0); });
     g.selectAll(".pin .dot").attr("r", function(){ return (this.parentNode.classList.contains("on") ? 7.5 : 4.5) * u; });
+    const kept = []; const ord = g.selectAll(".pin").nodes().sort((a, b) => (b.dataset.p === curAt) - (a.dataset.p === curAt) || (b.classList.contains("seen") - a.classList.contains("seen")));
+    ord.forEach(el => { const [x, y] = P[el.dataset.p], hide = kept.some(([kx, ky]) => Math.hypot(kx - x, ky - y) / u < 16); el.classList.toggle("hid", hide); if (!hide) kept.push([x, y]); });
+    const [ax, ay] = P[curAt] || [0, 0];
+    g.selectAll(".lbl text").each(function(){ const c = this.dataset.k; if (c !== "city" && c !== "town") return; const near = curAt && Math.hypot(+this.getAttribute("x") - ax, +this.getAttribute("y") - ay) / u < 30; this.style.display = near ? "none" : ""; });
+    const al = g.select(".act-lbl"); if (curAt) al.attr("x", ax).attr("y", ay).attr("dy", -17*u).attr("font-size", 16*u).text(actName);
+    g.selectAll(".lbl text, .act-lbl").style("stroke-width", 3.5*u);
     g.selectAll(".pin .halo").attr("r", 20*u); g.selectAll(".land").attr("stroke-width", 1*u);
     g.selectAll(".route").attr("stroke-width", 2.4*u).attr("stroke-dasharray", `${7*u} ${6*u}`); };
-  const zoom = d3.zoom().scaleExtent([1, 9]).translateExtent([[-400,-400],[G.W+400,G.H+400]]).on("zoom", e => { g.attr("transform", e.transform); scaleBits(e.transform.k); });
+  const zoom = d3.zoom().scaleExtent([1, 12]).translateExtent([[-400,-400],[G.W+400,G.H+400]]).on("zoom", e => { g.attr("transform", e.transform); scaleBits(e.transform.k); });
   svg.call(zoom).on("dblclick.zoom", null);
   const box = () => { const r = node.getBoundingClientRect(), s = Math.max(r.width/G.W, r.height/G.H); return [r.width/s, r.height/s]; }; /* حجم الجزء الظاهر من الخريطة بوحدات viewBox */
   const goTo = (pts, kmax, t) => { const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]); const [vw, vh] = box(), pad = 90;
@@ -1634,13 +1647,15 @@ function siraView(){
     g.selectAll(".pin").each(function(){ const p = this.dataset.p, first = E.findIndex(x => x.at === p); this.classList.toggle("on", p === e.at); this.classList.toggle("seen", first <= siraI); this.setAttribute("class", this.getAttribute("class").replace(/ ?e-[mda]/g,"") + " e-" + e.era); });
     const rt = g.select(".routes"); rt.selectAll("*").remove();
     if (e.path) rt.append("path").attr("class", "route e-" + e.era).attr("d", curve(e.path.map(k => P[k])));
-    const pl = g.select(`.pin[data-p="${e.at}"]`); pl.raise();
+    curAt = e.at; actName = PLN[e.at] || ""; const pl = g.select(`.pin[data-p="${e.at}"]`); pl.raise(); g.select(".act-lbl").raise();
     scaleBits(K);
     goTo((e.path || [e.at]).map(k => P[k]), e.z || 3, t);
     const all = allWho(e), on = who(all, false), off = who(all, true);
     const li = w => { const me = w[0] === siraPick ? " me" : ""; return byId[w[0]] ? `<li class="lnk${me}"><a href="#${w[0]}" aria-label="${esc(sName(w[0]))}: افتح الحلقة"><b>${esc(sName(w[0]))}</b><span>${esc(w[1])}</span><i class="go" aria-hidden="true">←</i></a></li>` : `<li class="plain${me}"><div><b>${esc(sName(w[0]))}</b><span>${esc(w[1])}</span></div></li>`; };
     card.className = "sira-card e-" + e.era;
-    card.innerHTML = `<div class="sc-k"><span class="sc-era">${ERA_NAME[e.era]}</span><span class="sc-d">${e.d}</span><span class="sc-n">${ar(siraI+1)} / ${ar(n)}</span></div>
+    const [dh, dm] = e.d.replace("ق.هـ", "قبل الهجرة").split(" · ");
+    card.innerHTML = `<div class="sc-k"><span class="sc-era">${ERA_NAME[e.era]}</span><span class="sc-n">${ar(siraI+1)} / ${ar(n)}</span></div>
+      <div class="sc-date"><b>${dh}</b>${dm ? `<span>${dm}</span>` : ""}</div>
       <h2>${esc(e.t)}</h2><div class="sc-pl">${PIN}${esc(e.pl)}</div><p class="sc-x">${esc(e.text)}</p>
       ${e.q ? `<blockquote class="sc-q"><p>«${e.q.x}»</p><cite>${esc(e.q.s)}</cite>${(window.SIRA_FULL||{})[e.id] ? `<details class="sc-full"><summary>اقرأ الحديث كاملًا</summary><p>${esc(window.SIRA_FULL[e.id])}</p><cite>${esc(e.q.s.replace(/^[^،]*،\s*/, ""))}</cite></details>` : ""}</blockquote>` : ""}
 `;
