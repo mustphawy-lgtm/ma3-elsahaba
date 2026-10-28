@@ -757,6 +757,21 @@ footer > span{display:flex;flex-direction:column;align-items:flex-start}
 #siraMap .iq{fill:var(--i-q);opacity:.7}
 #siraMap .is path{stroke:var(--i-s);stroke-width:2.6;stroke-linecap:round;fill:none}
 #siraMap .isx path{stroke:var(--i-s);stroke-width:2;stroke-linecap:round;fill:none}
+.sira-card .sc-pl{margin-top:12px}
+.sc-full-btn{margin-top:12px;font:600 13px var(--f-ui);color:var(--ec);background:transparent;border:1px solid color-mix(in srgb,var(--ec) 45%,transparent);border-radius:999px;padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.sc-full-btn::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 3h9l3 3v11H4z M7 8h6 M7 11h6 M7 14h4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 3h9l3 3v11H4z M7 8h6 M7 11h6 M7 14h4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat}
+.sc-full-btn:hover{background:color-mix(in srgb,var(--ec) 12%,transparent)}
+.hd-dlg{width:min(720px,calc(100vw - 32px));max-height:min(82vh,820px);padding:0;border:0;border-radius:20px;background:var(--sheet);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5);overflow:hidden}
+.hd-dlg[open]{display:flex;flex-direction:column}
+.hd-dlg::backdrop{background:rgba(10,12,22,.55);backdrop-filter:blur(3px)}
+.hd-head{position:relative;padding:22px 26px 14px;border-bottom:1px solid var(--rule);border-top:4px solid var(--ec)}
+.hd-k{font:600 12px var(--f-ui);color:var(--ec)}
+.hd-t{font-family:var(--f-name);font-weight:400;font-size:30px;line-height:1.35;margin:4px 0 0}
+.hd-close{position:absolute;inset-inline-end:16px;top:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font:500 15px var(--f-ui);cursor:pointer}
+.hd-body{overflow:auto;padding:20px 26px 26px}
+.hd-x{font-family:var(--f-text);font-size:22px;line-height:2.05;margin:0;color:var(--ink)}
+.hd-s{display:block;margin-top:14px;font:normal 13px var(--f-ui);color:var(--muted)}
+@media (max-width:760px){.hd-x{font-size:20px;line-height:1.95}.hd-head{padding:18px 18px 12px}.hd-body{padding:16px 18px 22px}.hd-t{font-size:26px}}
 .sira-who .xtra-off{display:none}.sira-who.offopen .xtra-off{display:block}
 .who-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.who-btns .more-btn{margin:0}
 .who-off{border-color:color-mix(in srgb,var(--bad) 45%,transparent)!important;color:var(--bad)!important}
@@ -1614,6 +1629,7 @@ function siraView(){
     <button class="tl-play" id="tlPlay" aria-pressed="false"><span class="pl-i" aria-hidden="true"></span><span class="pl-t">تشغيل</span></button>
   </div>
     <article class="sira-card" id="siraCard" aria-live="polite"></article>
+    <dialog id="hadithDlg" class="hd-dlg" aria-labelledby="hdT"><div class="hd-head"><span class="hd-k">الحديث كاملًا</span><h3 class="hd-t" id="hdT"></h3><button class="hd-close" type="button" aria-label="إغلاق">✕</button></div><div class="hd-body"><p class="hd-x"></p><cite class="hd-s"></cite></div></dialog>
     <section class="sira-who" id="siraWho" aria-label="الصحابة في الحدث"></section>
   </div>`;
   const svg = d3.select("#siraMap"), g = svg.select(".sm"), node = svg.node();
@@ -1664,7 +1680,7 @@ function siraView(){
     card.innerHTML = `<div class="sc-k"><span class="sc-era">${ERA_NAME[e.era]}</span><span class="sc-n">${ar(siraI+1)} / ${ar(n)}</span></div>
       <div class="sc-date"><b>${dh}</b>${dm ? `<span>${dm}</span>` : ""}</div>
       <h2>${esc(e.t)}</h2><div class="sc-pl">${PIN}${esc(e.pl)}</div><p class="sc-x">${esc(e.text)}</p>
-      ${e.q ? `<blockquote class="sc-q"><p>«${e.q.x}»</p><cite>${esc(e.q.s)}</cite>${(window.SIRA_FULL||{})[e.id] ? `<details class="sc-full"><summary>اقرأ الحديث كاملًا</summary><p>${esc(window.SIRA_FULL[e.id])}</p><cite>${esc(e.q.s.replace(/^[^،]*،\s*/, ""))}</cite></details>` : ""}</blockquote>` : ""}
+      ${e.q ? `<blockquote class="sc-q"><p>«${e.q.x}»</p><cite>${esc(e.q.s)}</cite>${(window.SIRA_FULL||{})[e.id] ? `<button class="sc-full-btn" type="button" aria-haspopup="dialog">اقرأ الحديث كاملًا</button>` : ""}</blockquote>` : ""}
 `;
     const TOP = 8, pf = a => a.slice().sort((x, y) => (y[0] === siraPick) - (x[0] === siraPick));
     const ser = pf(on.filter(w => byId[w[0]])), oth = pf(on.filter(w => !byId[w[0]]));
@@ -1680,6 +1696,9 @@ function siraView(){
     whoBox.hidden = !on.length && !off.length;
     fixLinks(whoBox);
     fixLinks(card);
+    const fb = card.querySelector(".sc-full-btn"); if (fb) fb.onclick = () => { const d = document.getElementById("hadithDlg");
+      d.className = "hd-dlg e-" + e.era; d.querySelector(".hd-t").textContent = e.t; d.querySelector(".hd-x").textContent = window.SIRA_FULL[e.id]; d.querySelector(".hd-s").textContent = "رواه " + ((e.q.s.match(/البخاري\s[٠-٩]+(?:،\s[٠-٩]+)*/) || [e.q.s])[0]) + "، بلا إسناد";
+      d.showModal(); d.querySelector(".hd-body").scrollTop = 0; };
   }
   const hay = E.map(e => norm([e.t, e.pl, e.text, e.q ? e.q.x : "", ...allWho(e).map(w => sName(w[0]) + " " + w[1])].join(" ")));
   const wordHits = w => { const q = norm(w); return E.map((e, j) => hay[j].includes(q) ? j : -1).filter(j => j >= 0); };
@@ -1720,6 +1739,7 @@ function siraView(){
     const h0 = pickSet(); if (h0 && siraI >= h0[h0.length-1]) show(h0[0]);
     siraTimer = setInterval(() => { const h = pickSet(), last = h ? h[h.length-1] : n-1; if (siraI >= last) return stop(); stepTo(1); }, 5200); };
   svg.call(zoom.transform, d3.zoomIdentity); scaleBits(1);
+  const dlg = document.getElementById("hadithDlg"); dlg.querySelector(".hd-close").onclick = () => dlg.close(); dlg.onclick = ev => { if (ev.target === dlg) dlg.close(); };
   syncPick(); show(siraI, 0);
   let rw = innerWidth; window.onresize = () => { const e = E[siraI]; scaleBits(K); goTo((e.path || [e.at]).map(k => P[k]), e.z || 3, 0); rw = innerWidth; };
 }
