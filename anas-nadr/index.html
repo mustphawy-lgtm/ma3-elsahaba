@@ -839,6 +839,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .sira-who .sc-who:empty{display:none}
 @media (max-width:1100px){.sira-who .sc-who{grid-template-columns:repeat(2,minmax(0,1fr))}.sira-who .sc-who.oth{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.sira-who{padding:4px 16px 20px}.sira-who .sc-who.ser{grid-template-columns:1fr}.sira-who .sc-who.oth{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.sira-who .oth b{font-size:16.5px}.sira-who .oth span{font-size:13px}}
+.fb-mail{font-size:18px;display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:10px 16px;border-radius:999px;border:1px solid currentColor;color:var(--ink);font-weight:700;text-decoration:none}.fb-mail[hidden]{display:none}
 </style>
 <style>body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap" dir="rtl" lang="ar">
@@ -1493,7 +1494,8 @@ function wireDone(root, l, pi){ const b = root.querySelector(".done-btn"); if (!
     if (nb.length) toast(`<span class="tm">${MEDAL}</span><span><b>وسام جديد: ${esc(nb[0].t)}</b><br>${esc(nb[0].d)}</span>`);
     else if (prog.has(k)) { const n = doneN(); toast(`<span><b>بارك الله فيك</b><br>أنهيت ${ar(n)} من ${ar(UNITS.length)} مجلسًا (${ar(Math.round(n / UNITS.length * 100))}٪)</span>`); } }; }
 /* ---------- زر الأسئلة والاقتراحات ---------- */
-const FB_TO = "https://formsubmit.co/ajax/mustphawy@gmail.com";
+const FB_MAIL = "mustphawy@gmail.com", FB_TO = "https://formsubmit.co/ajax/" + FB_MAIL;
+const W3F_KEY = ""; /* مفتاح Web3Forms: يُرسل أولًا إن وُجد، وFormSubmit احتياطي */
 function initFeedback(){
   if (document.getElementById("fbFab")) return;
   const fab = document.createElement("button"); fab.id = "fbFab"; fab.className = "fb-fab"; fab.type = "button"; fab.setAttribute("aria-haspopup", "dialog");
@@ -1508,13 +1510,15 @@ function initFeedback(){
       <label class="fb-f"><span>رسالتك</span><textarea name="message" rows="5" required maxlength="3000"></textarea></label>
       <input class="fb-hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="fb-err" role="alert" hidden></p>
+      <a class="fb-mail" hidden>أرسلها من بريدك</a>
       <button class="fb-send" type="submit">إرسال</button>
     </div>
     <div class="fb-ok" hidden><b>وصلت رسالتك، جزاك الله خيرًا.</b><p>سنرد عليك على بريدك قريبًا إن شاء الله.</p><button class="fb-send fb-close2" type="button">إغلاق</button></div>
   </form>`;
   document.body.append(fab, dlg);
   const f = dlg.querySelector("form"), err = dlg.querySelector(".fb-err"), send = dlg.querySelector(".fb-send");
-  const reset = () => { f.reset(); err.hidden = true; dlg.querySelector(".fb-body").hidden = false; dlg.querySelector(".fb-ok").hidden = true; send.disabled = false; send.textContent = "إرسال"; };
+  const mail = dlg.querySelector(".fb-mail");
+  const reset = () => { f.reset(); err.hidden = true; mail.hidden = true; dlg.querySelector(".fb-body").hidden = false; dlg.querySelector(".fb-ok").hidden = true; send.disabled = false; send.textContent = "إرسال"; };
   fab.onclick = () => { reset(); dlg.showModal(); setTimeout(() => f.message.focus(), 50); };
   dlg.querySelector(".fb-x").onclick = () => dlg.close(); dlg.querySelector(".fb-close2").onclick = () => dlg.close();
   dlg.onclick = e => { if (e.target === dlg) dlg.close(); };
@@ -1525,11 +1529,16 @@ function initFeedback(){
     if (f._honey.value) return;
     send.disabled = true; send.textContent = "جارٍ الإرسال…";
     const type = f.type.value;
-    try { const r = await fetch(FB_TO, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ "النوع": type, "الاسم": f.name.value.trim() || "(لم يكتب اسمه)", email, "الرسالة": msg, "الصفحة": location.href, _subject: `مع الصحابة: ${type} جديد`, _template: "table", _captcha: "false", _replyto: email }) });
-      if (!r.ok) throw 0;
-      dlg.querySelector(".fb-body").hidden = true; dlg.querySelector(".fb-ok").hidden = false;
-    } catch(x) { err.textContent = "تعذّر الإرسال الآن. تأكد من الاتصال بالإنترنت وحاول مرة أخرى."; err.hidden = false; send.disabled = false; send.textContent = "إرسال"; } };
+    const name = f.name.value.trim() || "(لم يكتب اسمه)", subject = `مع الصحابة: ${type} جديد`;
+    const post = async (url, data) => { const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) });
+      const j = await r.json().catch(() => ({})); if (!r.ok || j.success === false || j.success === "false") throw 0; };
+    const tries = [];
+    if (W3F_KEY) tries.push(() => post("https://api.web3forms.com/submit", { access_key: W3F_KEY, subject, from_name: "مع الصحابة", "النوع": type, "الاسم": name, email, "الرسالة": msg, "الصفحة": location.href }));
+    tries.push(() => post(FB_TO, { "النوع": type, "الاسم": name, email, "الرسالة": msg, "الصفحة": location.href, _subject: subject, _template: "table", _captcha: "false", _replyto: email }));
+    for (const t of tries) { try { await t(); dlg.querySelector(".fb-body").hidden = true; dlg.querySelector(".fb-ok").hidden = false; return; } catch(x) {} }
+    err.textContent = "تعذّر الإرسال من الموقع الآن. يمكنك إرسال رسالتك نفسها من بريدك:"; err.hidden = false;
+    mail.href = `mailto:${FB_MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${type}\nالاسم: ${name}\nالبريد: ${email}\n\n${msg}\n\n${location.href}`)}`;
+    mail.hidden = false; send.disabled = false; send.textContent = "إعادة المحاولة"; };
 }
 function home(){
   const LATEST = "ibn-amr"; /* آخر حلقة نزلت على القناة */
