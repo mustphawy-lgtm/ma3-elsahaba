@@ -18,7 +18,12 @@ timeout 110 node prerender.mjs                     # صفحات الصحابة +
 1. القناة: https://www.youtube.com/channel/UCqHueXazVReJWcYdcL5TI8A/videos
    الحلقات تحمل في عنوانها «- مع الصحابة». تجاهل «رسائل قرآنية» وغيرها.
    الحلقة جديدة إذا كان معرّف الفيديو غير موجود في `sohba/data.js` (حقل `video` أو `parts`).
-   ملف RSS محجوب عن WebFetch، فاستعمل المتصفح (Claude in Chrome) لقراءة صفحة الفيديوهات والنص المفرّغ (Show transcript).
+   ملف RSS محجوب عن WebFetch لكنه يعمل من الطرفية:
+   `curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=UCqHueXazVReJWcYdcL5TI8A"`
+   والنص المفرّغ من الطرفية أيضًا:
+   `pip install --break-system-packages youtube-transcript-api` ثم
+   `YouTubeTranscriptApi().fetch(VIDEO_ID, languages=['ar'])` (لكل مقطع `start` و`text`).
+   المدة ووصف الحلقة من صفحة الفيديو (`curl` ثم ابحث عن `"lengthSeconds"` و`"shortDescription"`).
 2. اقرأ النص المفرّغ كاملًا قبل الكتابة، وحدّد الصحابي بدقة من الفيديو نفسه، لا من الاسم وحده
    (مثال: «عبد الله بن عمرو» هنا هو ابن العاص لا ابن حرام).
 3. أضف عنصرًا في `LESSONS` داخل `sohba/data.js` قبل أحدث حلقة، على نمط `ibn-amr`:
