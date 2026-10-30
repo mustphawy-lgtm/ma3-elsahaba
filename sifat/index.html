@@ -1719,7 +1719,7 @@ function companion(l, pi){
     </div>
     <aside class="side">
       <div class="box"><h3>رسالة الدرس</h3><p class="msg">${esc(l.message)}</p></div>
-      ${related(l).length ? `<div class="box"><h3>صحابة يجمعهم بيه باب</h3><div class="rel">${related(l).map(x => `<a href="#${x.o.id}"><span class="n">${esc(x.o.name)}</span><span class="w">${x.s.map(k => esc(T[k].label)).join(" · ")}</span></a>`).join("")}</div></div>` : ""}
+      ${related(l).length ? `<div class="box"><h3>صحابة يجمعه بهم باب</h3><div class="rel">${related(l).map(x => `<a href="#${x.o.id}"><span class="n">${esc(x.o.name)}</span><span class="w">${x.s.map(k => esc(T[k].label)).join(" · ")}</span></a>`).join("")}</div></div>` : ""}
     </aside>
   </section>
   <section class="axes-sec"><div class="sum-h"><h2>محاور الدرس</h2></div>
