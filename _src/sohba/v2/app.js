@@ -125,7 +125,7 @@ function initFeedback(){
 /* المشاركة: زر للحلقة وزر للموقع، ونافذة واحدة بخيارات المشاركة */
 const SITE = "https://www.ma3elsahaba.com";
 const SH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg>';
-const shareBtnHTML = (kind, id) => `<button class="share-btn" type="button" data-share="${kind}"${id ? ` data-id="${id}"` : ""}>${SH_ICON}<span>${kind === "ep" ? "شارك الحلقة وخذ الثواب" : "شارك الموقع وخذ الثواب"}</span></button>`;
+const shareBtnHTML = (kind, id) => `<button class="share-btn" type="button" data-share="${kind}"${id ? ` data-id="${id}"` : ""}>${SH_ICON}<span>${kind === "ep" ? "شارك الحلقة، ودُلَّ على الخير" : "شارك الموقع، ودُلَّ على الخير"}</span></button>`;
 function shareData(kind, id){
   if (kind === "ep" && byId[id]) { const l = byId[id];
     return { url: `${SITE}/${id}/`, title: `${l.name} | مع الصحابة`, text: `${l.name}: ${l.title}\nحلقة من سلسلة «مع الصحابة» مع أ. مصطفى خالد` }; }
@@ -154,7 +154,7 @@ function initShare(){
 }
 function openShare(kind, id){
   const dlg = document.getElementById("shDlg"), d = shareData(kind, id), msg = d.text + "\n" + d.url, E = encodeURIComponent;
-  dlg.querySelector("#shT").textContent = kind === "ep" ? "شارك الحلقة وخذ الثواب" : "شارك الموقع وخذ الثواب";
+  dlg.querySelector("#shT").textContent = kind === "ep" ? "شارك الحلقة، ودُلَّ على الخير" : "شارك الموقع، ودُلَّ على الخير";
   const links = { wa: `https://wa.me/?text=${E(msg)}`, tg: `https://t.me/share/url?url=${E(d.url)}&text=${E(d.text)}`, fb: `https://www.facebook.com/sharer/sharer.php?u=${E(d.url)}`, x: `https://x.com/intent/post?text=${E(d.text)}&url=${E(d.url)}` };
   dlg.querySelectorAll("[data-net]").forEach(a => a.href = links[a.dataset.net]);
   const inp = dlg.querySelector(".sh-copy input"), cb = dlg.querySelector(".sh-copy button"); inp.value = d.url; cb.textContent = "نسخ الرابط";
