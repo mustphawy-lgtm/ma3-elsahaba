@@ -1513,7 +1513,7 @@ function wireDone(root, l, pi){ const b = root.querySelector(".done-btn"); if (!
     else if (prog.has(k)) { const n = doneN(); toast(`<span><b>بارك الله فيك</b><br>أنهيت ${ar(n)} من ${ar(UNITS.length)} مجلسًا (${ar(Math.round(n / UNITS.length * 100))}٪)</span>`); } }; }
 /* ---------- زر الأسئلة والاقتراحات ---------- */
 const FB_MAIL = "mustphawy@gmail.com", FB_TO = "https://formsubmit.co/ajax/" + FB_MAIL;
-const W3F_KEY = ""; /* مفتاح Web3Forms: يُرسل أولًا إن وُجد، وFormSubmit احتياطي */
+const W3F_KEY = "355b8bbf-ac14-4dfb-972f-97338149895e"; /* مفتاح Web3Forms: يُرسل أولًا إن وُجد، وFormSubmit احتياطي */
 function initFeedback(){
   if (document.getElementById("fbFab")) return;
   const fab = document.createElement("button"); fab.id = "fbFab"; fab.className = "fb-fab"; fab.type = "button"; fab.setAttribute("aria-haspopup", "dialog");
