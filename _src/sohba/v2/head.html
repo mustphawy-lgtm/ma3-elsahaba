@@ -834,4 +834,22 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (max-width:1100px){.sira-who .sc-who{grid-template-columns:repeat(2,minmax(0,1fr))}.sira-who .sc-who.oth{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.sira-who{padding:4px 16px 20px}.sira-who .sc-who.ser{grid-template-columns:1fr}.sira-who .sc-who.oth{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.sira-who .oth b{font-size:16.5px}.sira-who .oth span{font-size:13px}}
 .fb-mail{font-size:18px;display:inline-flex;align-items:center;gap:6px;margin:0 0 12px;padding:10px 16px;border-radius:999px;border:1px solid currentColor;color:var(--ink);font-weight:700;text-decoration:none}.fb-mail[hidden]{display:none}
+.ep-acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}.ep-acts .done-btn{margin-top:0}
+.share-btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--f-ui);color:var(--sheet);background:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:11px 20px;cursor:pointer;transition:opacity .2s}
+.share-btn:hover{opacity:.88}.share-btn svg,.sh-native svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.hero .share-btn{margin-top:18px}
+.share-foot{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sh-dlg{width:min(460px,calc(100vw - 32px));padding:0;border:0;border-radius:20px;background:var(--sheet);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+.sh-dlg::backdrop{background:rgba(10,12,20,.55)}
+.sh-in{position:relative;padding:26px 24px 22px;display:grid;gap:14px}
+.sh-in h3{margin:0;font-family:var(--f-name);font-size:30px;line-height:1.4;padding-inline-end:44px}
+.sh-x{position:absolute;inset-inline-end:16px;top:18px}
+.sh-h{margin:0;font-size:17px;line-height:1.9;color:var(--ink-2)}.sh-h small{display:block;font:13px var(--f-ui);color:var(--muted)}
+.sh-native{display:flex;justify-content:center;align-items:center;gap:8px;font:600 16px var(--f-ui);color:var(--sheet);background:var(--ink);border:0;border-radius:999px;padding:12px;cursor:pointer}
+.sh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sh-grid a{display:flex;justify-content:center;font:600 14px var(--f-ui);color:var(--ink);text-decoration:none;border:1px solid var(--rule);border-radius:12px;padding:11px 4px;background:var(--paper)}
+.sh-grid a:hover{border-color:var(--ink)}
+.sh-copy{display:flex;gap:8px}.sh-copy input{flex:1;min-width:0;font:14px var(--f-ui);color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:10px 12px}
+.sh-copy button{font:600 14px var(--f-ui);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:12px;padding:0 14px;cursor:pointer;white-space:nowrap}
+@media (max-width:420px){.sh-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ep-acts>*{flex:1 1 auto;justify-content:center}}
 </style>

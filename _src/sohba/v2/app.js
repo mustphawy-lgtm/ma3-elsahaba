@@ -121,13 +121,55 @@ function initFeedback(){
     mail.href = `mailto:${FB_MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`${type}\nالاسم: ${name}\nالبريد: ${email}\n\n${msg}\n\n${location.href}`)}`;
     mail.hidden = false; send.disabled = false; send.textContent = "إعادة المحاولة"; };
 }
+
+/* المشاركة: زر للحلقة وزر للموقع، ونافذة واحدة بخيارات المشاركة */
+const SITE = "https://www.ma3elsahaba.com";
+const SH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"/></svg>';
+const shareBtnHTML = (kind, id) => `<button class="share-btn" type="button" data-share="${kind}"${id ? ` data-id="${id}"` : ""}>${SH_ICON}<span>${kind === "ep" ? "شارك الحلقة وخذ الثواب" : "شارك الموقع وخذ الثواب"}</span></button>`;
+function shareData(kind, id){
+  if (kind === "ep" && byId[id]) { const l = byId[id];
+    return { url: `${SITE}/${id}/`, title: `${l.name} | مع الصحابة`, text: `${l.name}: ${l.title}\nحلقة من سلسلة «مع الصحابة» مع أ. مصطفى خالد` }; }
+  return { url: SITE + "/", title: "مع الصحابة", text: "«مع الصحابة»: دروس عن رجال صحبوا النبي ﷺ، نتعلم من سِيَرهم كيف تلقّوا هذا الدين" };
+}
+function initShare(){
+  if (document.getElementById("shDlg")) return;
+  const dlg = document.createElement("dialog"); dlg.id = "shDlg"; dlg.className = "sh-dlg"; dlg.setAttribute("aria-labelledby", "shT");
+  dlg.innerHTML = `<div class="sh-in">
+    <button class="fb-x sh-x" type="button" aria-label="إغلاق">✕</button>
+    <h3 id="shT"></h3>
+    <p class="sh-h">قال رسول الله ﷺ: «مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ» <small>رواه مسلم (١٨٩٣)</small></p>
+    <button class="sh-native" type="button" hidden>${SH_ICON}<span>مشاركة من جهازك</span></button>
+    <div class="sh-grid">
+      <a data-net="wa" target="_blank" rel="noopener">واتساب</a>
+      <a data-net="tg" target="_blank" rel="noopener">تليجرام</a>
+      <a data-net="fb" target="_blank" rel="noopener">فيسبوك</a>
+      <a data-net="x" target="_blank" rel="noopener">إكس</a>
+    </div>
+    <div class="sh-copy"><input type="text" readonly dir="ltr" aria-label="الرابط"><button type="button">نسخ الرابط</button></div>
+  </div>`;
+  document.body.append(dlg);
+  dlg.querySelector(".sh-x").onclick = () => dlg.close();
+  dlg.onclick = e => { if (e.target === dlg) dlg.close(); };
+  document.addEventListener("click", e => { const b = e.target.closest("[data-share]"); if (!b) return; e.preventDefault(); openShare(b.dataset.share, b.dataset.id); });
+}
+function openShare(kind, id){
+  const dlg = document.getElementById("shDlg"), d = shareData(kind, id), msg = d.text + "\n" + d.url, E = encodeURIComponent;
+  dlg.querySelector("#shT").textContent = kind === "ep" ? "شارك الحلقة وخذ الثواب" : "شارك الموقع وخذ الثواب";
+  const links = { wa: `https://wa.me/?text=${E(msg)}`, tg: `https://t.me/share/url?url=${E(d.url)}&text=${E(d.text)}`, fb: `https://www.facebook.com/sharer/sharer.php?u=${E(d.url)}`, x: `https://x.com/intent/post?text=${E(d.text)}&url=${E(d.url)}` };
+  dlg.querySelectorAll("[data-net]").forEach(a => a.href = links[a.dataset.net]);
+  const inp = dlg.querySelector(".sh-copy input"), cb = dlg.querySelector(".sh-copy button"); inp.value = d.url; cb.textContent = "نسخ الرابط";
+  cb.onclick = async () => { try { await navigator.clipboard.writeText(d.url); } catch(x) { inp.select(); document.execCommand("copy"); } cb.textContent = "نُسخ ✓"; };
+  const nb = dlg.querySelector(".sh-native"); nb.hidden = !navigator.share;
+  nb.onclick = async () => { try { await navigator.share({ title: d.title, text: d.text, url: d.url }); dlg.close(); } catch(x) {} };
+  dlg.showModal();
+}
 function home(){
   const LATEST = "ibn-amr"; /* آخر حلقة نزلت على القناة */
   const latest = byId[LATEST] || list.find(l => l.video), lp = partsOf(latest)[0];
   view.innerHTML = `<div class="view">
   <section class="hero">
     <div><h1>مع الصحابة</h1>
-      <p class="lede">دروس عن رجال صحبوا النبي ﷺ، وبذلوا الغالي والنفيس من أجل هذا الدين. نصحبهم في سِيَرهم، ونتعلم كيف تلقّوا هذا الدين، وماذا فعلوا مع النبي ﷺ.</p><div class="eyebrow by">تحت إشراف أ. مصطفى خالد</div></div>
+      <p class="lede">دروس عن رجال صحبوا النبي ﷺ، وبذلوا الغالي والنفيس من أجل هذا الدين. نصحبهم في سِيَرهم، ونتعلم كيف تلقّوا هذا الدين، وماذا فعلوا مع النبي ﷺ.</p><div class="eyebrow by">تحت إشراف أ. مصطفى خالد</div>${shareBtnHTML("site")}</div>
     <a class="latest" href="#${latest.id}">${lp ? `<span class="lcover"><img src="https://i.ytimg.com/vi/${encodeURIComponent(lp.video)}/hqdefault.jpg" alt="" onerror="this.parentNode.remove()"><span class="play" aria-hidden="true"></span></span>` : ""}<span class="eyebrow">أحدث حلقة · ${durOf(latest)}</span>
       <div class="nm">${esc(latest.name)}</div><p class="q">${esc(latest.title)}</p>
 </a>
@@ -270,7 +312,7 @@ function companion(l, pi){
       <div class="player" id="player">${playerHTML(l, 0, vid)}</div>
       ${cp && cp.extra ? `<a class="extra ui" href="${yt(cp.extra.video)}" target="_blank" rel="noopener">＋ ${esc(cp.extra.label)} (مقطع منفصل على يوتيوب)</a>` : ""}
       ${audioHTML(scURL(l.id, pi), P.length > 1 ? "استمع للمجلس " + ar(pi+1) + " صوت" : null)}
-      ${l.video ? doneBtnHTML(l, pi) : ""}
+      <div class="ep-acts">${l.video ? doneBtnHTML(l, pi) : ""}${l.video ? shareBtnHTML("ep", l.id) : ""}</div>
       <p class="intro">${esc(l.oneLine)}</p>
     </div>
     <aside class="side">
@@ -759,6 +801,6 @@ try { const t = localStorage.getItem("ms-theme"); if (t) root.dataset.theme = t;
 syncT(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncT);
 if (tBtn) tBtn.onclick = () => { const t = isDark() ? "light" : "dark"; root.dataset.theme = t; try { localStorage.setItem("ms-theme", t); } catch(e) {} syncT(); };
 const barEl = document.querySelector(".bar"); const onScroll = () => barEl && barEl.classList.toggle("scrolled", scrollY > 24); addEventListener("scroll", onScroll, {passive:true}); onScroll();
-initFeedback();
+initFeedback(); initShare();
 route();
 })();
