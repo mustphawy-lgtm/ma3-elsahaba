@@ -777,6 +777,62 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .fam,.tree-wrap,.parts,.view,.view > *,main,section,.body > *,.sira > *,.hero > *,.ten-grid > *{min-width:0;max-width:100%}
 .about > *,.about > div > *{min-width:0}.chan{grid-auto-columns:minmax(0,max-content);max-width:100%}.chan a{min-width:0}
 @media (max-width:420px){.chan{grid-auto-columns:minmax(0,1fr);column-gap:14px}.chan a{min-width:0;overflow-wrap:anywhere}}
+/* رحلتك مع الصحابة */
+.prog{margin:56px 0 0;padding:26px 28px 20px;border-radius:20px;background:var(--sheet);box-shadow:inset 0 0 0 1px var(--rule)}
+.pg-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.pg-line{margin:6px 0 0;font-size:20px;line-height:1.7;color:var(--ink-2);max-width:52ch}
+.pg-line b{font-family:var(--f-name);font-weight:400;font-size:26px;color:var(--ink)}
+.pg-pct{font-family:var(--f-name);font-size:46px;line-height:1;color:var(--c-gold)}
+.pg-bar{height:10px;border-radius:999px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule);margin:16px 0 14px;overflow:hidden}
+.pg-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--c-gold),#C9A35A);transition:width .6s ease}
+.pg-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px}
+.pg-next{font:600 14px var(--f-ui);color:var(--sheet);background:var(--ink);padding:10px 18px;border-radius:999px;text-decoration:none}
+.pg-badges{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pg-badges li{display:inline-flex;align-items:center;gap:6px;font:500 12.5px var(--f-ui);color:var(--muted);padding:5px 10px 5px 8px;border-radius:999px;background:var(--paper);opacity:.55;filter:grayscale(1)}
+.pg-badges li.on{opacity:1;filter:none;color:var(--ink);background:var(--c-gold-s)}
+.pg-badges svg,.ms-toast svg{width:20px;height:20px;flex:none}
+.pg-badges .rb,.ms-toast .rb{fill:#B4473A}.pg-badges .cd,.ms-toast .cd{fill:#D8B46A}.pg-badges .st,.ms-toast .st{fill:#FFF6DE}
+.pg-note{margin:12px 0 0;font-size:12.5px;color:var(--muted)}
+.mk{display:inline-grid;place-items:center;margin-inline-start:8px;font:600 11px/1 var(--f-ui);vertical-align:middle;border-radius:999px}
+.mk.done{width:20px;height:20px;background:var(--c-green);color:#fff}
+.mk.part{padding:4px 7px;background:var(--c-gold-s);color:var(--c-gold)}
+.done-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:600 15px var(--f-ui);color:var(--ink);background:var(--sheet);border:1.5px solid var(--c-green);border-radius:999px;padding:11px 22px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.done-btn:hover{background:var(--c-green-s)}
+.done-btn.on{background:var(--c-green);color:#fff;border-color:var(--c-green)}
+.part.is-done b::after{content:" ✓";color:var(--c-green)}
+.ms-toast{position:fixed;z-index:90;inset-inline:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));margin-inline:auto;max-width:420px;display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:16px;background:var(--ink);color:var(--sheet);font:14px/1.6 var(--f-ui);box-shadow:0 18px 40px -14px rgba(0,0,0,.45);opacity:0;translate:0 12px;pointer-events:none;transition:opacity .3s ease,translate .3s ease}
+.ms-toast.on{opacity:1;translate:0 0}
+.ms-toast .tm svg{width:34px;height:34px}
+@media (max-width:760px){.prog{padding:20px 18px 16px;margin-top:40px}.pg-pct{font-size:38px}.pg-line{font-size:18px}}
+/* زر الأسئلة والاقتراحات */
+.fb-fab{position:fixed;z-index:80;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f-ui);color:var(--bar-ink);background:var(--bar-bg);border:1px solid color-mix(in srgb,var(--c-gold) 55%,transparent);border-radius:999px;padding:11px 18px 11px 16px;cursor:pointer;box-shadow:0 12px 30px -10px rgba(10,12,22,.5);transition:transform .2s ease}
+.fb-fab:hover{transform:translateY(-2px)}
+.fb-fab svg{width:20px;height:20px;fill:none;stroke:#D8B46A;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:520px){.fb-fab{padding:12px}.fb-fab span{display:none}}
+.fb-dlg{width:min(560px,calc(100vw - 32px));max-height:min(88vh,760px);padding:0;border:0;border-radius:20px;background:var(--sheet);color:var(--ink);box-shadow:0 30px 80px -20px rgba(0,0,0,.5);overflow:auto}
+.fb-dlg::backdrop{background:rgba(10,12,22,.55);backdrop-filter:blur(3px)}
+.fb-head{position:relative;padding:22px 24px 14px;border-top:4px solid var(--c-gold);border-bottom:1px solid var(--rule)}
+.fb-head h3{font-family:var(--f-name);font-weight:400;font-size:30px;line-height:1.3;margin:0}
+.fb-head p{margin:6px 0 0;font-size:17px;line-height:1.7;color:var(--ink-2);padding-inline-end:36px}
+.fb-x{position:absolute;inset-inline-end:14px;top:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font:500 15px var(--f-ui);cursor:pointer}
+.fb-body,.fb-ok{padding:18px 24px 24px;display:grid;gap:14px}
+.fb-type{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.fb-type legend{font:600 13px var(--f-ui);color:var(--muted);margin-bottom:8px;padding:0}
+.fb-type label{cursor:pointer}.fb-type input{position:absolute;opacity:0;pointer-events:none}
+.fb-type span{display:inline-block;font:500 14px var(--f-ui);padding:8px 16px;border-radius:999px;border:1px solid var(--rule);background:var(--paper)}
+.fb-type input:checked + span{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.fb-type input:focus-visible + span{outline:2px solid var(--c-gold);outline-offset:2px}
+.fb-f{display:grid;gap:6px}.fb-f > span{font:600 13px var(--f-ui);color:var(--ink-2)}.fb-f em{font-style:normal;font-weight:400;color:var(--muted)}.fb-f em.req{color:var(--c-gold)}
+.fb-f input,.fb-f textarea{font:16px/1.6 var(--f-ui);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:11px 14px;width:100%;resize:vertical}
+.fb-f textarea{font-family:var(--f-text);font-size:18px;min-height:120px}
+.fb-f input:focus,.fb-f textarea:focus{outline:2px solid var(--c-gold);outline-offset:1px}
+.fb-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.fb-err{margin:0;font:500 14px var(--f-ui);color:var(--bad)}
+.fb-send{justify-self:start;font:600 15px var(--f-ui);color:var(--sheet);background:var(--ink);border:0;border-radius:999px;padding:12px 28px;cursor:pointer}
+.fb-send:disabled{opacity:.6;cursor:wait}
+.fb-body[hidden],.fb-ok[hidden]{display:none}
+.fb-ok b{font-family:var(--f-name);font-weight:400;font-size:26px;color:var(--c-green)}.fb-ok p{margin:0;color:var(--ink-2)}
+@media print{.fb-fab{display:none}}
 .sira-who .xtra-off{display:none}.sira-who.offopen .xtra-off{display:block}
 .who-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.who-btns .more-btn{margin:0}
 .who-off{border-color:color-mix(in srgb,var(--bad) 45%,transparent)!important;color:var(--bad)!important}
@@ -806,6 +862,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div class="player" id="player"><button class="yt has-cover" data-embed="FGxaWmmcIYk" aria-label="شغّل الحلقة"><img class="cover" src="https://i.ytimg.com/vi/FGxaWmmcIYk/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button></div>
       
       <div class="aud"><a class="aud-btn" href="https://soundcloud.com/mustafakhaledofficial92/qbpb8d3bc2yo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1.2 14.4c.1 0 .2.1.2.2l.3 1.8-.3 1.8c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-1.8.3-1.8c0-.1.1-.2.2-.2Zm1.7-1c.1 0 .2.1.2.2l.4 2.8-.4 2.7c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-2.7.3-2.8c0-.1.1-.2.2-.2Zm1.8-.6c.1 0 .2.1.2.3l.3 3.3-.3 3.2c0 .1-.1.2-.2.2s-.3-.1-.3-.2l-.3-3.2.3-3.3c0-.2.1-.3.3-.3Zm1.8-.1c.2 0 .3.1.3.3l.3 3.4-.3 3.3c0 .2-.1.3-.3.3s-.3-.1-.3-.3l-.3-3.3.3-3.4c0-.2.1-.3.3-.3Zm1.9-.6c.2 0 .3.1.3.3l.3 4-.3 3.3c0 .2-.2.3-.3.3-.2 0-.3-.1-.3-.3l-.3-3.3.3-4c0-.2.1-.3.3-.3Zm1.9-1.4c.2 0 .4.2.4.4l.3 5.4-.3 3.3c0 .2-.2.4-.4.4s-.4-.2-.4-.4l-.2-3.3.2-5.4c0-.2.2-.4.4-.4Zm2-.9c.2 0 .4.2.4.4l.2 6.3-.2 3.3c0 .3-.2.4-.4.4-.3 0-.4-.2-.4-.4l-.2-3.3.2-6.3c0-.2.2-.4.4-.4Zm1.6-.5c.4-.2.9-.2 1.4-.2 2.9 0 5.3 2.2 5.6 5.1.4-.2.8-.3 1.3-.3 1.8 0 3.2 1.5 3.2 3.3s-1.4 3.3-3.2 3.3h-8c-.3 0-.5-.2-.5-.5V9.2c0-.3.1-.4.2-.4Z"></path></svg><span><b>استمع للحلقة صوت</b><small>على ساوندكلاود · تقدر تسمعها وانت بره الموقع</small></span></a><button class="aud-play" type="button" data-sc="https://soundcloud.com/mustafakhaledofficial92/qbpb8d3bc2yo">شغّل هنا</button><div class="aud-embed"></div></div>
+      <button class="done-btn" type="button" data-k="musab:0" aria-pressed="false">أنهيت هذا الدرس</button>
       <p class="intro">ترك أنعم عيش في مكة، فكان أول سفير للإسلام في المدينة، ومات وما وجدوا له كفناً.</p>
     </div>
     <aside class="side">
@@ -1373,8 +1430,91 @@ function rowsHTML(){
   const rows = list.filter(l => filter === "all" || (filter === "ten" ? l.ten : group(l) === filter)); moreCount = rows.length;
   return rows.slice(0, showAll ? rows.length : SHOW).map((l) => {
     const n = list.indexOf(l) + 1;
-    const v0 = (partsOf(l)[0]||{}).video; return `<li><a class="row" href="#${l.id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(String(n).padStart(2,"0"))}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span>${l.video ? `<span class="dur">${durOf(l)}</span>` : `<span class="soon">من التحضير</span>`}</a></li>`;
+    const v0 = (partsOf(l)[0]||{}).video; return `<li><a class="row" href="#${l.id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(String(n).padStart(2,"0"))}</span><span class="nm">${esc(l.name)}${markHTML(l)}</span><span class="q">${esc(l.title)}</span>${l.video ? `<span class="dur">${durOf(l)}</span>` : `<span class="soon">من التحضير</span>`}</a></li>`;
   }).join("");
+}
+/* ---------- تقدّم الزائر: يُحفظ في متصفحه فقط، بلا تسجيل ---------- */
+const PKEY = "ms-progress-v1";
+const prog = (() => { try { return new Set(JSON.parse(localStorage.getItem(PKEY) || "[]")); } catch(e) { return new Set(); } })();
+const saveProg = () => { try { localStorage.setItem(PKEY, JSON.stringify([...prog])); } catch(e) {} };
+const UNITS = list.filter(l => l.video).flatMap(l => partsOf(l).map((p, j) => l.id + ":" + j));
+const doneOf = l => partsOf(l).filter((p, j) => prog.has(l.id + ":" + j)).length;
+const fullDone = l => !!l.video && doneOf(l) === partsOf(l).length;
+const doneN = () => UNITS.filter(u => prog.has(u)).length;
+const allOf = ids => ids.length > 0 && ids.every(l => fullDone(l));
+const MEDAL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2h3l1 5-2.5 1zM16 2h-3l-1 5 2.5 1z" class="rb"/><circle cx="12" cy="15" r="6.5" class="cd"/><path d="M12 11.2l1.1 2.3 2.5.3-1.8 1.7.5 2.5-2.3-1.2-2.3 1.2.5-2.5-1.8-1.7 2.5-.3z" class="st"/></svg>';
+const BADGES = [
+  {id:"first", t:"الخطوة الأولى", d:"أنهيت أول مجلس", ok: () => doneN() >= 1},
+  {id:"ten", t:"مع العشرة", d:"أنهيت دروس العشرة المبشرين بالجنة", ok: () => allOf(L.filter(l => l.ten))},
+  {id:"muhajir", t:"مع المهاجرين", d:"أنهيت دروس المهاجرين", ok: () => allOf(L.filter(l => group(l) === "muhajir"))},
+  {id:"ansar", t:"مع الأنصار", d:"أنهيت دروس الأنصار", ok: () => allOf(L.filter(l => !l.ten && group(l) !== "muhajir"))},
+  {id:"half", t:"نصف الطريق", d:"أنهيت نصف المجالس", ok: () => doneN() * 2 >= UNITS.length},
+  {id:"all", t:"أتممت السلسلة", d:"أنهيت كل المجالس المنشورة", ok: () => doneN() === UNITS.length}
+];
+const earned = () => BADGES.filter(b => b.ok()).map(b => b.id);
+function nextUp(){ for (const l of list) { if (!l.video) continue; const P = partsOf(l); for (let j = 0; j < P.length; j++) if (!prog.has(l.id + ":" + j)) return {l, j, n: P.length}; } return null; }
+function progHTML(){
+  const n = doneN(), T = UNITS.length, pct = Math.round(n / T * 100), nx = nextUp(), got = new Set(earned());
+  const nxt = nx ? `<a class="pg-next" href="#${nx.l.id}">${n ? "أكمل" : "ابدأ"}: ${esc(nx.l.name)}${nx.n > 1 ? `، المجلس ${ar(nx.j + 1)}` : ""} ←</a>` : "";
+  return `<section class="prog" aria-label="رحلتك مع الصحابة">
+    <div class="pg-top"><div><span class="eyebrow">رحلتك مع الصحابة</span>
+      <p class="pg-line">${n ? `أنهيت <b>${ar(n)}</b> من ${ar(T)} مجلسًا` : `لم تبدأ بعد. اسمع أي مجلس، ثم اضغط «أنهيت هذا المجلس» في آخره ليظهر تقدّمك هنا.`}</p></div>
+      ${n ? `<div class="pg-pct" aria-hidden="true">${ar(pct)}٪</div>` : ""}</div>
+    <div class="pg-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="نسبة ما أنهيت"><i style="width:${pct}%"></i></div>
+    <div class="pg-foot">${nxt}<ul class="pg-badges">${BADGES.map(b => `<li class="${got.has(b.id) ? "on" : ""}" title="${esc(b.t)}: ${esc(b.d)}">${MEDAL}<span>${esc(b.t)}</span></li>`).join("")}</ul></div>
+    <p class="pg-note ui">يُحفظ تقدّمك في هذا المتصفح فقط.</p>
+  </section>`;
+}
+const markHTML = l => { if (!l.video) return ""; const d = doneOf(l), t = partsOf(l).length; return d === t ? `<span class="mk done" title="أنهيته">✓</span>` : d ? `<span class="mk part" title="أنهيت ${ar(d)} من ${ar(t)}">${ar(d)}/${ar(t)}</span>` : ""; };
+function toast(html){ let t = document.getElementById("msToast"); if (!t) { t = document.createElement("div"); t.id = "msToast"; t.className = "ms-toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.innerHTML = html; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 4200); }
+function doneBtnHTML(l, pi){ const k = l.id + ":" + pi, on = prog.has(k), many = partsOf(l).length > 1;
+  return `<button class="done-btn${on ? " on" : ""}" type="button" data-k="${k}" aria-pressed="${on}">${on ? `✓ أنهيت ${many ? "هذا المجلس" : "هذا الدرس"}` : `أنهيت ${many ? "هذا المجلس" : "هذا الدرس"}`}</button>`; }
+function wireDone(root, l, pi){ const b = root.querySelector(".done-btn"); if (!b) return;
+  b.onclick = () => { const before = new Set(earned()), k = b.dataset.k; prog.has(k) ? prog.delete(k) : prog.add(k); saveProg();
+    b.outerHTML = doneBtnHTML(l, pi); wireDone(root, l, pi);
+    const tab = root.querySelector(`.part[data-p="${pi}"]`); if (tab) tab.classList.toggle("is-done", prog.has(k));
+    const nb = BADGES.filter(x => x.ok() && !before.has(x.id));
+    if (nb.length) toast(`<span class="tm">${MEDAL}</span><span><b>وسام جديد: ${esc(nb[0].t)}</b><br>${esc(nb[0].d)}</span>`);
+    else if (prog.has(k)) { const n = doneN(); toast(`<span><b>بارك الله فيك</b><br>أنهيت ${ar(n)} من ${ar(UNITS.length)} مجلسًا (${ar(Math.round(n / UNITS.length * 100))}٪)</span>`); } }; }
+/* ---------- زر الأسئلة والاقتراحات ---------- */
+const FB_TO = "https://formsubmit.co/ajax/mustphawy@gmail.com";
+function initFeedback(){
+  if (document.getElementById("fbFab")) return;
+  const fab = document.createElement("button"); fab.id = "fbFab"; fab.className = "fb-fab"; fab.type = "button"; fab.setAttribute("aria-haspopup", "dialog");
+  fab.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 8h7M8.5 11.5h4.5"/></svg><span>أسئلة واقتراحات</span>';
+  const dlg = document.createElement("dialog"); dlg.id = "fbDlg"; dlg.className = "fb-dlg"; dlg.setAttribute("aria-labelledby", "fbT");
+  dlg.innerHTML = `<form class="fb-form" novalidate>
+    <div class="fb-head"><h3 id="fbT">أسئلة واقتراحات</h3><p>اسأل، أو اقترح فكرة درس أو تحسينًا للموقع، وسيصلك الرد على بريدك إن شاء الله.</p><button class="fb-x" type="button" aria-label="إغلاق">✕</button></div>
+    <div class="fb-body">
+      <fieldset class="fb-type"><legend>نوع الرسالة</legend>${["سؤال","اقتراح","فكرة درس"].map((t, i) => `<label><input type="radio" name="type" value="${t}" ${i ? "" : "checked"}><span>${t}</span></label>`).join("")}</fieldset>
+      <label class="fb-f"><span>الاسم <em>(اختياري)</em></span><input name="name" type="text" autocomplete="name" maxlength="80"></label>
+      <label class="fb-f"><span>البريد الإلكتروني <em class="req">(مطلوب لنرد عليك)</em></span><input name="email" type="email" autocomplete="email" inputmode="email" required dir="ltr" placeholder="name@example.com"></label>
+      <label class="fb-f"><span>رسالتك</span><textarea name="message" rows="5" required maxlength="3000"></textarea></label>
+      <input class="fb-hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="fb-err" role="alert" hidden></p>
+      <button class="fb-send" type="submit">إرسال</button>
+    </div>
+    <div class="fb-ok" hidden><b>وصلت رسالتك، جزاك الله خيرًا.</b><p>سنرد عليك على بريدك قريبًا إن شاء الله.</p><button class="fb-send fb-close2" type="button">إغلاق</button></div>
+  </form>`;
+  document.body.append(fab, dlg);
+  const f = dlg.querySelector("form"), err = dlg.querySelector(".fb-err"), send = dlg.querySelector(".fb-send");
+  const reset = () => { f.reset(); err.hidden = true; dlg.querySelector(".fb-body").hidden = false; dlg.querySelector(".fb-ok").hidden = true; send.disabled = false; send.textContent = "إرسال"; };
+  fab.onclick = () => { reset(); dlg.showModal(); setTimeout(() => f.message.focus(), 50); };
+  dlg.querySelector(".fb-x").onclick = () => dlg.close(); dlg.querySelector(".fb-close2").onclick = () => dlg.close();
+  dlg.onclick = e => { if (e.target === dlg) dlg.close(); };
+  f.onsubmit = async e => { e.preventDefault(); err.hidden = true;
+    const email = f.email.value.trim(), msg = f.message.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = "اكتب بريدًا إلكترونيًّا صحيحًا حتى نستطيع الرد عليك."; err.hidden = false; f.email.focus(); return; }
+    if (msg.length < 3) { err.textContent = "اكتب رسالتك أولًا."; err.hidden = false; f.message.focus(); return; }
+    if (f._honey.value) return;
+    send.disabled = true; send.textContent = "جارٍ الإرسال…";
+    const type = f.type.value;
+    try { const r = await fetch(FB_TO, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ "النوع": type, "الاسم": f.name.value.trim() || "(لم يكتب اسمه)", email, "الرسالة": msg, "الصفحة": location.href, _subject: `مع الصحابة: ${type} جديد`, _template: "table", _captcha: "false", _replyto: email }) });
+      if (!r.ok) throw 0;
+      dlg.querySelector(".fb-body").hidden = true; dlg.querySelector(".fb-ok").hidden = false;
+    } catch(x) { err.textContent = "تعذّر الإرسال الآن. تأكد من الاتصال بالإنترنت وحاول مرة أخرى."; err.hidden = false; send.disabled = false; send.textContent = "إرسال"; } };
 }
 function home(){
   const LATEST = "saad-muadh"; /* آخر حلقة نزلت على القناة */
@@ -1387,9 +1527,10 @@ function home(){
       <div class="nm">${esc(latest.name)}</div><p class="q">${esc(latest.title)}</p>
 </a>
   </section>
+  ${progHTML()}
   <section class="sec ten-sec">
     <div class="sec-h"><h2>العشرة المبشرون بالجنة</h2><p class="ui ten-note">«أبو بكر في الجنة، وعمر في الجنة...» رواه الترمذي عن عبد الرحمن بن عوف</p></div>
-    <ol class="ten-grid">${TEN.filter(id => byId[id]).map((id,i) => { const l = byId[id]; const v0 = (partsOf(l)[0]||{}).video; return `<li><a href="#${id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(i+1)}</span><span class="nm">${esc(l.name)}</span><span class="q">${esc(l.title)}</span><span class="dur">${durOf(l)}</span></a></li>`; }).join("")}</ol>
+    <ol class="ten-grid">${TEN.filter(id => byId[id]).map((id,i) => { const l = byId[id]; const v0 = (partsOf(l)[0]||{}).video; return `<li><a href="#${id}"${v0 ? ` data-thumb="${esc(v0)}"` : ""}><span class="no">${ar(i+1)}</span><span class="nm">${esc(l.name)}${markHTML(l)}</span><span class="q">${esc(l.title)}</span><span class="dur">${durOf(l)}</span></a></li>`; }).join("")}</ol>
   </section>
   ${bandHTML()}
   <section class="sec">
@@ -1520,10 +1661,11 @@ function companion(l, pi){
     <div class="tags">${l.links.map(k => `<a class="tag" href="/map/" data-tag="${k}">${esc(T[k].label)}</a>`).join("")}${FAM[l.id] ? `<button class="tag fam-jump" onclick="document.getElementById('fam').scrollIntoView({behavior:'smooth'})">شجرة العائلة ↓</button>` : ""}</div></section>
   <section class="body">
     <div>
-      ${P.length > 1 ? `<div class="parts" role="tablist" aria-label="مجالس الحلقة">${P.map((p,j) => `<button role="tab" class="part" data-p="${j}" aria-selected="${j===pi}"><b>المجلس ${ar(j+1)}</b><span>${esc(p.label||"")}</span><em>${esc(p.dur||"")}</em></button>`).join("")}</div>` : ""}
+      ${P.length > 1 ? `<div class="parts" role="tablist" aria-label="مجالس الحلقة">${P.map((p,j) => `<button role="tab" class="part${prog.has(l.id + ":" + j) ? " is-done" : ""}" data-p="${j}" aria-selected="${j===pi}"><b>المجلس ${ar(j+1)}</b><span>${esc(p.label||"")}</span><em>${esc(p.dur||"")}</em></button>`).join("")}</div>` : ""}
       <div class="player" id="player">${playerHTML(l, 0, vid)}</div>
       ${cp && cp.extra ? `<a class="extra ui" href="${yt(cp.extra.video)}" target="_blank" rel="noopener">＋ ${esc(cp.extra.label)} (مقطع منفصل على يوتيوب)</a>` : ""}
       ${audioHTML(scURL(l.id, pi), P.length > 1 ? "استمع للمجلس " + ar(pi+1) + " صوت" : null)}
+      ${l.video ? doneBtnHTML(l, pi) : ""}
       <p class="intro">${esc(l.oneLine)}</p>
     </div>
     <aside class="side">
@@ -1546,7 +1688,7 @@ function companion(l, pi){
     else document.getElementById("player").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
   });
   const pl = document.getElementById("player"); pl.addEventListener("click", e => { const b = e.target.closest("[data-embed]"); if (b) pl.innerHTML = playerHTML(l, 1, b.dataset.embed); });
-  wireAudio(view); fixSp(view);
+  wireAudio(view); fixSp(view); wireDone(view, l, pi);
   view.querySelectorAll(".part").forEach(b => b.onclick = () => { const y = scrollY; companion(l, +b.dataset.p); scrollTo({top:y}); const t = view.querySelector('.part[aria-selected="true"]'); t && t.focus(); });
   view.querySelectorAll("[data-tag]").forEach(a => a.onclick = () => { pendingTag = "t:" + a.dataset.tag; });
   const tw_ = view.querySelector(".tree-wrap"); if (tw_) tw_.scrollLeft = -(tw_.scrollWidth - tw_.clientWidth)/2;
@@ -2012,6 +2154,7 @@ try { const t = localStorage.getItem("ms-theme"); if (t) root.dataset.theme = t;
 syncT(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncT);
 if (tBtn) tBtn.onclick = () => { const t = isDark() ? "light" : "dark"; root.dataset.theme = t; try { localStorage.setItem("ms-theme", t); } catch(e) {} syncT(); };
 const barEl = document.querySelector(".bar"); const onScroll = () => barEl && barEl.classList.toggle("scrolled", scrollY > 24); addEventListener("scroll", onScroll, {passive:true}); onScroll();
+initFeedback();
 route();
 })();
 
