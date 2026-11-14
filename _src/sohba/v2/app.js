@@ -1,8 +1,8 @@
 (function(){
 const L = window.LESSONS.filter(l => l.video), T = window.TAGS, C = window.CHANNELS; /* الحلقات اللي لسه ما نزلتش على يوتيوب مش بتظهر */
 const TEN = ["abu-bakr","umar","uthman","ali","talha","zubayr","saad","abd-rahman","abu-ubayda","said"];
-const ORDER = [...TEN, "ibn-amr","saad-muadh","anas-nadr","amr-jamuh","abu-dujana","ibn-masud","hudhayfa","marthad","musab","kaab","ibn-umar"];
-const DUR = {"ibn-amr":"٥٧ د","saad-muadh":"٥٩ د","anas-nadr":"٤٤ د","amr-jamuh":"٥٠ د","abu-dujana":"٥٦ د","ibn-masud":"٥٤ د","hudhayfa":"١:١٩ س","marthad":"٤٦ د","musab":"١:٠٤ س"};
+const ORDER = [...TEN, "amr-as","ibn-amr","saad-muadh","anas-nadr","amr-jamuh","abu-dujana","ibn-masud","hudhayfa","marthad","musab","kaab","ibn-umar"];
+const DUR = {"amr-as":"١:١٩ س","ibn-amr":"٥٧ د","saad-muadh":"٥٩ د","anas-nadr":"٤٤ د","amr-jamuh":"٥٠ د","abu-dujana":"٥٦ د","ibn-masud":"٥٤ د","hudhayfa":"١:١٩ س","marthad":"٤٦ د","musab":"١:٠٤ س"};
 const FAM = Object.assign({}, window.FAMILY, window.TEN_FAMILY);
 const partsOf = l => l.parts || (l.video ? [{video:l.video, dur:DUR[l.id]||"", intro:l.summary&&l.summary.intro, points:l.summary&&l.summary.points, status:l.summary&&l.summary.status}] : []);
 const durOf = l => { const p = partsOf(l); return p.length > 1 ? ar(p.length) + " مجالس" : (p[0] && p[0].dur) || ""; };
@@ -164,7 +164,7 @@ function openShare(kind, id){
   dlg.showModal();
 }
 function home(){
-  const LATEST = "ibn-amr"; /* آخر حلقة نزلت على القناة */
+  const LATEST = "amr-as"; /* آخر حلقة نزلت على القناة */
   const latest = byId[LATEST] || list.find(l => l.video), lp = partsOf(latest)[0];
   view.innerHTML = `<div class="view">
   <section class="hero">

@@ -48,6 +48,7 @@ const MAP = {
   "saad-muadh": ["qiyada","dawa","amana","shajaa","shahada","adl"],
   "hudhayfa":   ["amana","shajaa","fitna","ilm"],
   "ibn-umar":   ["ittiba","zuhd","ilm","fitna"],
+  "amr-as":     ["tawba","sidq","qiyada","ilm","hubb","fitna"],
   "ibn-amr":    ["itidal","quran","ilm","birr","wafa","fitna"],
   "ibn-masud":  ["quran","ilm","amana","shajaa","hubb","sabq"],
   "marthad":    ["iffa","sidq","shahada","thabat"],
