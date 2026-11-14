@@ -879,7 +879,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <section class="body">
     <div>
       
-      <div class="player" id="player"><button class="yt has-cover" data-embed="fUyy6kxP560" aria-label="شغّل الحلقة"><img class="cover" src="https://i.ytimg.com/vi/fUyy6kxP560/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button></div>
+      <div class="player" id="player"><button class="yt has-cover" data-embed="fUyy6kxP560" aria-label="شغّل الحلقة"><img class="cover" src="https://i.ytimg.com/vi/fUyy6kxP560/maxresdefault.jpg" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('maxresdefault','hqdefault')}else this.remove()"><span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button></div>
       
       <div class="aud"><a class="aud-btn" href="https://soundcloud.com/mustafakhaledofficial92/naxriij43afj" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1.2 14.4c.1 0 .2.1.2.2l.3 1.8-.3 1.8c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-1.8.3-1.8c0-.1.1-.2.2-.2Zm1.7-1c.1 0 .2.1.2.2l.4 2.8-.4 2.7c0 .1-.1.2-.2.2s-.2-.1-.2-.2l-.3-2.7.3-2.8c0-.1.1-.2.2-.2Zm1.8-.6c.1 0 .2.1.2.3l.3 3.3-.3 3.2c0 .1-.1.2-.2.2s-.3-.1-.3-.2l-.3-3.2.3-3.3c0-.2.1-.3.3-.3Zm1.8-.1c.2 0 .3.1.3.3l.3 3.4-.3 3.3c0 .2-.1.3-.3.3s-.3-.1-.3-.3l-.3-3.3.3-3.4c0-.2.1-.3.3-.3Zm1.9-.6c.2 0 .3.1.3.3l.3 4-.3 3.3c0 .2-.2.3-.3.3-.2 0-.3-.1-.3-.3l-.3-3.3.3-4c0-.2.1-.3.3-.3Zm1.9-1.4c.2 0 .4.2.4.4l.3 5.4-.3 3.3c0 .2-.2.4-.4.4s-.4-.2-.4-.4l-.2-3.3.2-5.4c0-.2.2-.4.4-.4Zm2-.9c.2 0 .4.2.4.4l.2 6.3-.2 3.3c0 .3-.2.4-.4.4-.3 0-.4-.2-.4-.4l-.2-3.3.2-6.3c0-.2.2-.4.4-.4Zm1.6-.5c.4-.2.9-.2 1.4-.2 2.9 0 5.3 2.2 5.6 5.1.4-.2.8-.3 1.3-.3 1.8 0 3.2 1.5 3.2 3.3s-1.4 3.3-3.2 3.3h-8c-.3 0-.5-.2-.5-.5V9.2c0-.3.1-.4.2-.4Z"></path></svg><span><b>استمع للحلقة صوت</b><small>على ساوندكلاود · تقدر تسمعها وانت بره الموقع</small></span></a><button class="aud-play" type="button" data-sc="https://soundcloud.com/mustafakhaledofficial92/naxriij43afj">شغّل هنا</button><div class="aud-embed"></div></div>
       <div class="ep-acts"><button class="done-btn" type="button" data-k="abu-dujana:0" aria-pressed="false">أنهيت هذا الدرس</button><button class="share-btn" type="button" data-share="ep" data-id="abu-dujana"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.6"></circle><circle cx="6" cy="12" r="2.6"></circle><circle cx="18" cy="19" r="2.6"></circle><path d="M8.3 10.8l7.4-4.4M8.3 13.2l7.4 4.4"></path></svg><span>شارك الحلقة، ودُلَّ على الخير</span></button></div>
@@ -1621,7 +1621,7 @@ function home(){
   <section class="hero">
     <div><h1>مع الصحابة</h1>
       <p class="lede">دروس عن رجال صحبوا النبي ﷺ، وبذلوا الغالي والنفيس من أجل هذا الدين. نصحبهم في سِيَرهم، ونتعلم كيف تلقّوا هذا الدين، وماذا فعلوا مع النبي ﷺ.</p><div class="eyebrow by">تحت إشراف أ. مصطفى خالد</div>${shareBtnHTML("site")}</div>
-    <a class="latest" href="#${latest.id}">${lp ? `<span class="lcover"><img src="https://i.ytimg.com/vi/${encodeURIComponent(lp.video)}/hqdefault.jpg" alt="" onerror="this.parentNode.remove()"><span class="play" aria-hidden="true"></span></span>` : ""}<span class="eyebrow">أحدث حلقة · ${durOf(latest)}</span>
+    <a class="latest" href="#${latest.id}">${lp ? `<span class="lcover"><img src="https://i.ytimg.com/vi/${encodeURIComponent(lp.video)}/maxresdefault.jpg" alt="" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('maxresdefault','hqdefault')}else this.parentNode.remove()"><span class="play" aria-hidden="true"></span></span>` : ""}<span class="eyebrow">أحدث حلقة · ${durOf(latest)}</span>
       <div class="nm">${esc(latest.name)}</div><p class="q">${esc(latest.title)}</p>
 </a>
   </section>
@@ -1733,7 +1733,7 @@ function related(l){
 function playerHTML(l, t, vid){
   vid = vid || l.video;
   if (!vid) return `<div class="yt"><b>${esc(l.name)}</b><span class="nov">الحلقة دي مش على يوتيوب لسه، والمحتوى من تحضير الدرس</span></div>`;
-  const cover = `<img class="cover" src="https://i.ytimg.com/vi/${encodeURIComponent(vid)}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`;
+  const cover = `<img class="cover" src="https://i.ytimg.com/vi/${encodeURIComponent(vid)}/maxresdefault.jpg" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('maxresdefault','hqdefault')}else this.remove()">`;
   if (window.NO_EMBED) return `<a class="yt has-cover" href="${yt(vid, t)}" target="_blank" rel="noopener">${cover}<span class="play" aria-hidden="true"></span><b>شاهد الحلقة${t ? " من " + fmtT(t) : ""}</b><small>تفتح على يوتيوب</small></a>`;
   if (!t) return `<button class="yt has-cover" data-embed="${esc(vid)}" aria-label="شغّل الحلقة">${cover}<span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button>`;
   return `<iframe src="https://www.youtube-nocookie.com/embed/${esc(vid)}?rel=0&autoplay=1${t > 1 ? "&start=" + t : ""}" title="${esc(l.name)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;

@@ -170,7 +170,7 @@ function home(){
   <section class="hero">
     <div><h1>مع الصحابة</h1>
       <p class="lede">دروس عن رجال صحبوا النبي ﷺ، وبذلوا الغالي والنفيس من أجل هذا الدين. نصحبهم في سِيَرهم، ونتعلم كيف تلقّوا هذا الدين، وماذا فعلوا مع النبي ﷺ.</p><div class="eyebrow by">تحت إشراف أ. مصطفى خالد</div>${shareBtnHTML("site")}</div>
-    <a class="latest" href="#${latest.id}">${lp ? `<span class="lcover"><img src="https://i.ytimg.com/vi/${encodeURIComponent(lp.video)}/hqdefault.jpg" alt="" onerror="this.parentNode.remove()"><span class="play" aria-hidden="true"></span></span>` : ""}<span class="eyebrow">أحدث حلقة · ${durOf(latest)}</span>
+    <a class="latest" href="#${latest.id}">${lp ? `<span class="lcover"><img src="https://i.ytimg.com/vi/${encodeURIComponent(lp.video)}/maxresdefault.jpg" alt="" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('maxresdefault','hqdefault')}else this.parentNode.remove()"><span class="play" aria-hidden="true"></span></span>` : ""}<span class="eyebrow">أحدث حلقة · ${durOf(latest)}</span>
       <div class="nm">${esc(latest.name)}</div><p class="q">${esc(latest.title)}</p>
 </a>
   </section>
@@ -282,7 +282,7 @@ function related(l){
 function playerHTML(l, t, vid){
   vid = vid || l.video;
   if (!vid) return `<div class="yt"><b>${esc(l.name)}</b><span class="nov">الحلقة دي مش على يوتيوب لسه، والمحتوى من تحضير الدرس</span></div>`;
-  const cover = `<img class="cover" src="https://i.ytimg.com/vi/${encodeURIComponent(vid)}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`;
+  const cover = `<img class="cover" src="https://i.ytimg.com/vi/${encodeURIComponent(vid)}/maxresdefault.jpg" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('maxresdefault','hqdefault')}else this.remove()">`;
   if (window.NO_EMBED) return `<a class="yt has-cover" href="${yt(vid, t)}" target="_blank" rel="noopener">${cover}<span class="play" aria-hidden="true"></span><b>شاهد الحلقة${t ? " من " + fmtT(t) : ""}</b><small>تفتح على يوتيوب</small></a>`;
   if (!t) return `<button class="yt has-cover" data-embed="${esc(vid)}" aria-label="شغّل الحلقة">${cover}<span class="play" aria-hidden="true"></span><b>شاهد الحلقة</b></button>`;
   return `<iframe src="https://www.youtube-nocookie.com/embed/${esc(vid)}?rel=0&autoplay=1${t > 1 ? "&start=" + t : ""}" title="${esc(l.name)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
