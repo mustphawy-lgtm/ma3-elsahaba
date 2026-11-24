@@ -8,7 +8,7 @@ b64j=lambda f: 'data:image/jpeg;base64,'+base64.b64encode(open(f,'rb').read()).d
 head=head0.replace('__PAPER__',b64j('site/map/paper.jpg')).replace('__PAPERD__',b64j('site/map/paper-dark.jpg')).replace('__PANORAMA__',b64('site/fonts/panorama.woff2')).replace('__ZANJABEEL__',b64('site/fonts/zanjabeel.woff2')).replace('__BANDARTL__','data:image/webp;base64,'+base64.b64encode(open('site/img/band-art-l.webp','rb').read()).decode()).replace('__BANDART__','data:image/webp;base64,'+base64.b64encode(open('site/img/band-art.webp','rb').read()).decode())
 headS=head0.replace('__PAPER__','/map/paper.jpg').replace('__PAPERD__','/map/paper-dark.jpg').replace('__PANORAMA__','/fonts/panorama.woff2').replace('__ZANJABEEL__','/fonts/zanjabeel.woff2').replace('__BANDARTL__','/img/band-art-l.webp').replace('__BANDART__','/img/band-art.webp')
 js=lambda f: open(f).read()
-D3='<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>'
+D3='<script src="/js/d3-7.8.5.min.js"></script>'
 scripts="<script>"+js('data.js')+"</script><script>"+js('v2/ten.js')+"</script><script>"+js('v2/others.js')+"</script><script>"+js('v2/audio.js')+"</script><script>"+js('v2/themes.js')+"</script><script>window.LOGO="+__import__('json').dumps(LOGO)+";window.SIRA_ART={l:'__SIRAL__',d:'__SIRAD__'};window.SIRA_GEO="+open('v2/sira-geo.json').read()+"</script><script>"+js('v2/sira.js')+js('v2/sira-full.js')+"</script><script>"+js('v2/family.js')+"</script><script>"+js('v2/app.js')
 w64=lambda f:'data:image/webp;base64,'+base64.b64encode(open(f,'rb').read()).decode()
 scriptsA=scripts.replace('__SIRAL__',w64('site/img/sira-light.webp')).replace('__SIRAD__',w64('site/img/sira-dark.webp'))
